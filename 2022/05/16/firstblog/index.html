@@ -8,21 +8,22 @@
   <link rel="dns-prefetch" href="https://giserkui.github.io">
   <title>Windows下使用npm安装hexo报错 | 随心Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Windows下使用npm安装hexo报错 本篇共解决三个问题：ERR；npm update； hexo command not found  1. ERR错误在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下 解决方法：  删除C:\Users{user}下的.npmrc文件 运行命令：1$ npm cache clean –for">
+  <meta name="description" content="Windows下使用npm安装hexo报错 本篇共解决三个问题：ERR；npm update； hexo command not found  1. ERR错误在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下 ** 解决方法：**  删除C:\Users{user}下的.npmrc文件 运行命令：1$ npm cache clean">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows下使用npm安装hexo报错">
 <meta property="og:url" content="https://giserkui.github.io/2022/05/16/firstblog/index.html">
 <meta property="og:site_name" content="随心Blog">
-<meta property="og:description" content="Windows下使用npm安装hexo报错 本篇共解决三个问题：ERR；npm update； hexo command not found  1. ERR错误在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下 解决方法：  删除C:\Users{user}下的.npmrc文件 运行命令：1$ npm cache clean –for">
+<meta property="og:description" content="Windows下使用npm安装hexo报错 本篇共解决三个问题：ERR；npm update； hexo command not found  1. ERR错误在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下 ** 解决方法：**  删除C:\Users{user}下的.npmrc文件 运行命令：1$ npm cache clean">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo1.png">
-<meta property="og:image" content="https://giserkui.github.io/source/assets/img/hexo3.png">
+<meta property="og:image" content="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png">
+<meta property="og:image" content="https://giserkui.github.io/%5Bhttps:/github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png%5D#pic_center">
+<meta property="og:image" content="https://giserkui.github.io/%5Bhttps:/github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png%5D#pic_center">
 <meta property="article:published_time" content="2022-05-16T13:43:03.102Z">
-<meta property="article:modified_time" content="2022-05-26T08:44:41.354Z">
+<meta property="article:modified_time" content="2022-05-26T09:03:26.761Z">
 <meta property="article:author" content="Sunflower">
 <meta property="article:tag" content="Remote Sensing&#x2F;GIS&#x2F;Deep Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo1.png">
+<meta name="twitter:image" content="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png">
   
     <link rel="alternative" href="/atom.xml" title="随心Blog" type="application/atom+xml">
   
@@ -182,31 +183,23 @@
 <p>本篇共解决三个问题：ERR；npm update； hexo command not found</p>
 </blockquote>
 <h2 id="1-ERR错误"><a href="#1-ERR错误" class="headerlink" title="1. ERR错误"></a>1. ERR错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
-<p><strong>解决方法：</strong></p>
+<p>** 解决方法：**</p>
 <ul>
 <li>删除C:\Users{user}下的.npmrc文件</li>
 <li>运行命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache clean –force</span><br></pre></td></tr></table></figure>
 但我尝试两种方法后，安装npm，仍然还存在以下问题：</li>
 </ul>
-<p><img src="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo1.png" alt="image ERR"></p>
-<p><strong>解决方法：</strong><br>搞了好久，我检查之后，发现是我打开翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p>
-<h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.npm更新问题</h2><div align=center>
-![image update](https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo2.png)
-</div>
-提示Run npm install -g npm@8.10.0 to update
-运行命令，对npm先升级，再安装hexo
+<p>![image ERR]([<a target="_blank" rel="noopener" href="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png]">https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png]</a> #pic_center)</p>
+<p>** 解决方法：**</p>
+<p>搞了好久，我检查之后，发现是我打开翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p>
+<h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.npm更新问题</h2><p><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png" alt="image update"></p>
+<p>提示Run npm install -g <a href="mailto:&#x6e;&#112;&#109;&#x40;&#56;&#46;&#x31;&#x30;&#x2e;&#48;">&#x6e;&#112;&#109;&#x40;&#56;&#46;&#x31;&#x30;&#x2e;&#48;</a> to update<br>运行命令，对npm先升级，再安装hexo</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g npm</span><br></pre></td></tr></table></figure>
 
 <h2 id="3-hexo已安装，但找不到该命令"><a href="#3-hexo已安装，但找不到该命令" class="headerlink" title="3.hexo已安装，但找不到该命令"></a>3.hexo已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
-<div align=center><img src="/source/assets/img/hexo3.png"></div>
-![image update](https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo3.png)
-**解决方法：**
-找到C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中
-重新打开命令窗口，成功。
-<div align=center>
-![image update](https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo4.png)
-</div>
-### 以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！
+<p><img src="/%5Bhttps:/github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png%5D#pic_center" alt="image update"><br>** 解决方法：**<br>找到C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p>
+<p><img src="/%5Bhttps:/github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png%5D#pic_center" alt="image update"></p>
+<h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>
       
 
       
