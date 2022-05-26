@@ -156,37 +156,48 @@
     <article id="post-firstblog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/16/firstblog/">Windows下使用npm安装hexo报错</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/16/firstblog/" class="archive-article-date">
+  	<time datetime="2022-05-16T13:43:03.102Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-16</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="title-Windows下使用npm安装hexo报错"><a href="#title-Windows下使用npm安装hexo报错" class="headerlink" title="title:Windows下使用npm安装hexo报错"></a>title:Windows下使用npm安装hexo报错</h2><p>#Windows下使用npm安装hexo报错</p>
-<blockquote>
-<p>本篇共解决三个问题：ERR；Run npm install -g <a href="mailto:&#x6e;&#x70;&#x6d;&#64;&#56;&#x2e;&#49;&#48;&#46;&#48;">&#x6e;&#x70;&#x6d;&#64;&#56;&#x2e;&#49;&#48;&#46;&#48;</a> to update； hexo: command not found）</p>
+        <h1 id="Windows下使用npm安装hexo报错"><a href="#Windows下使用npm安装hexo报错" class="headerlink" title="Windows下使用npm安装hexo报错"></a>Windows下使用npm安装hexo报错</h1><blockquote>
+<p>本篇共解决三个问题：ERR；npm update； hexo command not found</p>
 </blockquote>
-<p>##1. ERR错误<br>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
+<h2 id="1-ERR错误"><a href="#1-ERR错误" class="headerlink" title="1. ERR错误"></a>1. ERR错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
 <p><strong>解决方法：</strong></p>
 <ul>
 <li>删除C:\Users{user}下的.npmrc文件</li>
-<li>运行命令：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean –force</span><br></pre></td></tr></table></figure>
+<li>运行命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache clean –force</span><br></pre></td></tr></table></figure>
 但我尝试两种方法后，安装npm，仍然还存在以下问题：<div align=center><img src="/source/assets/img/hexo1.png"></div>
 **解决方法：**
 搞了好久，我检查之后，发现是我打开翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</li>
 </ul>
-<p>##2.npm更新问题</p>
-<div align=center><img src="/source/assets/img/hexo2.png"></div>
+<h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.npm更新问题</h2><div align=center><img src="/source/assets/img/hexo2.png"></div>
 提示Run npm install -g npm@8.10.0 to update
 运行命令，对npm先升级，再安装hexo
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npm</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g npm</span><br></pre></td></tr></table></figure>
 
-<p>##3.hexo已安装，但找不到该命令<br>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
+<h2 id="3-hexo已安装，但找不到该命令"><a href="#3-hexo已安装，但找不到该命令" class="headerlink" title="3.hexo已安装，但找不到该命令"></a>3.hexo已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
 <div align=center><img src="/source/assets/img/hexo3.png"></div>
 **解决方法：**
 找到C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中
 重新打开命令窗口，成功。
 <div align=center><img src="/source/assets/img/hexo4.png"></div>
 
-<p>###以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</p>
-
+<h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>
       
 
       
