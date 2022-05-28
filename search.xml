@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>&lt;i&gt; hexo安装问题&lt;/i&gt;</title>
+      <link href="/2022/05/16/firstblog/"/>
+      <url>/2022/05/16/firstblog/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Windows下使用npm安装hexo报错"><a href="#Windows下使用npm安装hexo报错" class="headerlink" title="Windows下使用npm安装hexo报错"></a>Windows下使用npm安装hexo报错</h1><blockquote><p>本篇共解决三个问题：ERR；npm update； hexo command not found</p></blockquote><h2 id="1-ERR错误"><a href="#1-ERR错误" class="headerlink" title="1. ERR错误"></a>1. <code>ERR</code>错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p><p><b> 解决方法：</b></p><ul><li>删除C:\Users{user}下的.npmrc文件</li><li>运行命令：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> cache clean –force<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>但我尝试两种方法后，安装npm，仍然还存在以下问题：</li></ul><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png"></div><p><b> 解决方法：</b></p><p>搞了好久，检查之后，发现是打开了翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p><h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.<code>npm</code>更新问题</h2><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png"></div><p>提示Run npm install -g <a href="mailto:npm@8.10.0">npm@8.10.0</a> to update<br>运行命令，对npm先升级，再安装hexo</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="3-hexo已安装，但找不到该命令"><a href="#3-hexo已安装，但找不到该命令" class="headerlink" title="3.hexo已安装，但找不到该命令"></a>3.<code>hexo</code>已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png"></div><p><b> 解决方法：</b><br>找到 C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png"></div><h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> npm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2022/05/12/hello-world/"/>
+      <url>/2022/05/12/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>

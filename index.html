@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://giserkui.github.io">
-  <title>随心Blog</title>
+  <title>SunflowerBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="随心Blog">
+<meta property="og:title" content="SunflowerBlog">
 <meta property="og:url" content="https://giserkui.github.io/index.html">
-<meta property="og:site_name" content="随心Blog">
-<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="SunflowerBlog">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Sunflower">
 <meta property="article:tag" content="Remote Sensing&#x2F;GIS&#x2F;Deep Learning">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="随心Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="SunflowerBlog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +33,9 @@
 
   
 
-<meta name="generator" content="Hexo 6.2.0"></head>
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -160,13 +162,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/16/firstblog/">Windows下使用npm安装hexo报错</a>
+      <a class="article-title" href="/2022/05/16/firstblog/">&lt;i&gt; hexo安装问题&lt;/i&gt;</a>
     </h1>
   
 
         
         <a href="/2022/05/16/firstblog/" class="archive-article-date">
-  	<time datetime="2022-05-16T13:43:03.102Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-16</time>
+  	<time datetime="2022-05-16T13:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-16</time>
 </a>
         
       </header>
@@ -176,29 +178,36 @@
         <h1 id="Windows下使用npm安装hexo报错"><a href="#Windows下使用npm安装hexo报错" class="headerlink" title="Windows下使用npm安装hexo报错"></a>Windows下使用npm安装hexo报错</h1><blockquote>
 <p>本篇共解决三个问题：ERR；npm update； hexo command not found</p>
 </blockquote>
-<h2 id="1-ERR错误"><a href="#1-ERR错误" class="headerlink" title="1. ERR错误"></a>1. ERR错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
-<p>** 解决方法：**</p>
+<h2 id="1-ERR错误"><a href="#1-ERR错误" class="headerlink" title="1. ERR错误"></a>1. <code>ERR</code>错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
+<p><b> 解决方法：</b></p>
 <ul>
 <li>删除C:\Users{user}下的.npmrc文件</li>
-<li>运行命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache clean –force</span><br></pre></td></tr></table></figure>
+<li>运行命令：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> cache clean –force<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 但我尝试两种方法后，安装npm，仍然还存在以下问题：</li>
 </ul>
-<p>![image ERR]([<a target="_blank" rel="noopener" href="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png]">https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png]</a> #pic_center)</p>
-<p>** 解决方法：**</p>
-<p>搞了好久，检查之后，发现是打开了翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p>
-<h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.npm更新问题</h2><p><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png" alt="image update"></p>
-<p>提示Run npm install -g <a href="mailto:&#110;&#x70;&#109;&#x40;&#56;&#46;&#49;&#x30;&#x2e;&#48;">&#110;&#x70;&#109;&#x40;&#56;&#46;&#49;&#x30;&#x2e;&#48;</a> to update<br>运行命令，对npm先升级，再安装hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g npm</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-hexo已安装，但找不到该命令"><a href="#3-hexo已安装，但找不到该命令" class="headerlink" title="3.hexo已安装，但找不到该命令"></a>3.hexo已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
-<div style="align: center">
-<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png"/>
+<div align="center">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png">
 </div>
 
-<p><img src="/%5Bhttps:/github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png%5D#pic_center" alt="image update"></p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法 "></a>解决方法 <br></h3><p>找到 C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p>
-<div style="align: center">
-<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png"/>
+<p><b> 解决方法：</b></p>
+<p>搞了好久，检查之后，发现是打开了翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p>
+<h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.<code>npm</code>更新问题</h2><div align="center">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png">
+</div>
+
+<p>提示Run npm install -g <a href="mailto:npm@8.10.0">npm@8.10.0</a> to update<br>运行命令，对npm先升级，再安装hexo</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="3-hexo已安装，但找不到该命令"><a href="#3-hexo已安装，但找不到该命令" class="headerlink" title="3.hexo已安装，但找不到该命令"></a>3.<code>hexo</code>已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
+<div align="center">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png">
+</div>
+
+
+
+<p><b> 解决方法：</b><br>找到 C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p>
+<div align="center">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png">
 </div>
 
 <h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>
@@ -208,8 +217,39 @@
     </div>
     <div class="article-info article-info-index">
       
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Hexo//" class="article-tag-list-link color5">Hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -264,16 +304,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
@@ -409,6 +449,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
