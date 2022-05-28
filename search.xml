@@ -8,7 +8,7 @@
       <link href="/2022/05/16/firstblog/"/>
       <url>/2022/05/16/firstblog/</url>
       
-        <content type="html"><![CDATA[<h1 id="Windows下使用npm安装hexo报错"><a href="#Windows下使用npm安装hexo报错" class="headerlink" title="Windows下使用npm安装hexo报错"></a>Windows下使用npm安装hexo报错</h1><blockquote><p>本篇共解决三个问题：ERR；npm update； hexo command not found</p></blockquote><h2 id="ERR错误"><a href="#ERR错误" class="headerlink" title="ERR错误"></a>ERR错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p><p><b> 解决方法：</b></p><ul><li>删除C:\Users{user}下的.npmrc文件</li><li>运行命令：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> cache clean –force<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>但我尝试两种方法后，安装npm，仍然还存在以下问题：</li></ul><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png"></div><p><b> 解决方法：</b></p><p>搞了好久，检查之后，发现是打开了翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p><h2 id="npm更新问题"><a href="#npm更新问题" class="headerlink" title="npm更新问题"></a>npm更新问题</h2><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png"></div><p>提示Run npm install -g <a href="mailto:npm@8.10.0">npm@8.10.0</a> to update<br>运行命令，对npm先升级，再安装hexo</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="hexo已安装，但找不到该命令"><a href="#hexo已安装，但找不到该命令" class="headerlink" title="hexo已安装，但找不到该命令"></a>hexo已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png"></div><p><b> 解决方法：</b><br>找到 C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p><div align="center"><img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png"></div><h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>]]></content>
+        <content type="html"><![CDATA[<h1 id="Windows下使用npm安装hexo报错"><a href="#Windows下使用npm安装hexo报错" class="headerlink" title="Windows下使用npm安装hexo报错"></a>Windows下使用npm安装hexo报错</h1><blockquote><p>本篇共解决三个问题：ERR；npm update； hexo command not found</p></blockquote><h2 id="ERR错误"><a href="#ERR错误" class="headerlink" title="ERR错误"></a>ERR错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p><p><b> 解决方法：</b></p><ul><li>删除C:\Users{user}下的.npmrc文件</li><li>运行命令：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> cache clean –force<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>但我尝试两种方法后，安装npm，仍然还存在以下问题：</li></ul><p><img src="/.io//hexo1.png"><br><b> 解决方法：</b></p><p>搞了好久，检查之后，发现是打开了翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p><h2 id="npm更新问题"><a href="#npm更新问题" class="headerlink" title="npm更新问题"></a>npm更新问题</h2><p><img src="/.io//hexo2.png"></p><p>提示Run npm install -g <a href="mailto:npm@8.10.0">npm@8.10.0</a> to update<br>运行命令，对npm先升级，再安装hexo</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="hexo已安装，但找不到该命令"><a href="#hexo已安装，但找不到该命令" class="headerlink" title="hexo已安装，但找不到该命令"></a>hexo已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p><div align="center"><img src="/.io//hexo3.png"></div><p><b> 解决方法：</b><br>找到 C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p><div align="center"><img src="/.io//hexo4.png"></div><h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>]]></content>
       
       
       <categories>
@@ -23,6 +23,33 @@
             <tag> hexo </tag>
             
             <tag> npm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo部署</title>
+      <link href="/2022/05/15/secblog/"/>
+      <url>/2022/05/15/secblog/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h1><blockquote><p>上一篇解决了hexo安装的问题，这一篇简单介绍如何进行hexo搭建一个简单博客</p></blockquote><h2 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h2><p>hexo官方主题下载地址：<a href="https://hexo.io/themes/">https://hexo.io/themes/</a><br>这里面挑选适合的主题，比如下载下面这个主题：<a href="https://github.com/JoeyBling/hexo-theme-yilia-plus">https://github.com/JoeyBling/hexo-theme-yilia-plus</a><br>在根目录下，右键鼠标打开bash<br><img src="/.io//bash.png"><br>运行如下命令：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> theme$ <span class="token function">git</span> clone --depth<span class="token operator">=</span><span class="token number">1</span> https://github.com/JoeyBling/hexo-theme-yilia-plus.git ./yilia-plus<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>修改hexo根目录下的 _config.yml中，修改theme: yilia-plus</p><h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>运行如下命令</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> themes/yilia-plus$ <span class="token function">git</span> pull<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="配置config"><a href="#配置config" class="headerlink" title="配置config"></a>配置config</h2><p>在_config.yml中配置自己喜欢的样式即可，github可以查看每个主题的config的内容，不再赘述。</p><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>同样在根目录下打开bash，运行如下命令：</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo clean$ hexo generate$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当然部署会遇到一些问题。比如： Failed to connect to github.com port 443: Timed out<br><img src="/.io//hexod.png"><br>出现这种问题很正常，这是本地部署，会存在网络的问题，可以打开（关闭）翻墙软件，多次尝试部署，成功部署会显示：<br><img src="/.io//hexosuc.png"><br>如果这种问题一直未能解决，可以选择Hexo Github Action、vercel 部署等方式。</p><h3 id="以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> github </tag>
             
         </tags>
       
