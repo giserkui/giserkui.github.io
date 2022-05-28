@@ -6,7 +6,7 @@
   <link href="https://giserkui.github.io/atom.xml" rel="self"/>
   
   <link href="https://giserkui.github.io/"/>
-  <updated>2022-05-28T16:41:17.888Z</updated>
+  <updated>2022-05-28T18:03:50.987Z</updated>
   <id>https://giserkui.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo部署</title>
+    <link href="https://giserkui.github.io/2022/05/22/secblog/"/>
+    <id>https://giserkui.github.io/2022/05/22/secblog/</id>
+    <published>2022-05-22T07:25:00.000Z</published>
+    <updated>2022-05-28T18:03:50.987Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;hexo部署&quot;&gt;&lt;a href=&quot;#hexo部署&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://giserkui.github.io/categories/Hexo/"/>
+    
+    
+    <category term="hexo" scheme="https://giserkui.github.io/tags/hexo/"/>
+    
+    <category term="github" scheme="https://giserkui.github.io/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo安装问题</title>
@@ -40,33 +67,6 @@
     <category term="hexo" scheme="https://giserkui.github.io/tags/hexo/"/>
     
     <category term="npm" scheme="https://giserkui.github.io/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo部署</title>
-    <link href="https://giserkui.github.io/2022/05/15/secblog/"/>
-    <id>https://giserkui.github.io/2022/05/15/secblog/</id>
-    <published>2022-05-15T07:25:00.000Z</published>
-    <updated>2022-05-28T16:41:25.420Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;hexo部署&quot;&gt;&lt;a href=&quot;#hexo部署&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Hexo" scheme="https://giserkui.github.io/categories/Hexo/"/>
-    
-    
-    <category term="hexo" scheme="https://giserkui.github.io/tags/hexo/"/>
-    
-    <category term="github" scheme="https://giserkui.github.io/tags/github/"/>
     
   </entry>
   
