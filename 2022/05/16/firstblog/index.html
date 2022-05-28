@@ -8,7 +8,7 @@
     <meta name="description" content="Windows下使用npm安装hexo报错
 本篇共解决三个问题：ERR；npm update； hexo command not found
 
-1. ERR错误在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果">
+ERR错误在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -315,7 +315,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/source/images/H.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -398,7 +398,7 @@
                 <h1 id="Windows下使用npm安装hexo报错"><a href="#Windows下使用npm安装hexo报错" class="headerlink" title="Windows下使用npm安装hexo报错"></a>Windows下使用npm安装hexo报错</h1><blockquote>
 <p>本篇共解决三个问题：ERR；npm update； hexo command not found</p>
 </blockquote>
-<h2 id="1-ERR错误"><a href="#1-ERR错误" class="headerlink" title="1. ERR错误"></a>1. <code>ERR</code>错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
+<h2 id="ERR错误"><a href="#ERR错误" class="headerlink" title="ERR错误"></a>ERR错误</h2><p>在安装npm时，遇到第一个问题是一连串的ERR错误，网上主要有两种解决方法，如果you遇到同样问题，可以先尝试如下</p>
 <p><b> 解决方法：</b></p>
 <ul>
 <li>删除C:\Users{user}下的.npmrc文件</li>
@@ -406,28 +406,28 @@
 但我尝试两种方法后，安装npm，仍然还存在以下问题：</li>
 </ul>
 <div align="center">
-<img src="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo1.png">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo1.png">
 </div>
 
 <p><b> 解决方法：</b></p>
 <p>搞了好久，检查之后，发现是打开了翻墙软件，所以这个报错有可能是pip打不开需要访问的地址。关掉后，问题解决！！！但又出现问题2</p>
-<h2 id="2-npm更新问题"><a href="#2-npm更新问题" class="headerlink" title="2.npm更新问题"></a>2.<code>npm</code>更新问题</h2><div align="center">
-<img src="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo2.png">
+<h2 id="npm更新问题"><a href="#npm更新问题" class="headerlink" title="npm更新问题"></a>npm更新问题</h2><div align="center">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo2.png">
 </div>
 
 <p>提示Run npm install -g <a href="mailto:npm@8.10.0">npm@8.10.0</a> to update<br>运行命令，对npm先升级，再安装hexo</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> -g <span class="token function">npm</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="3-hexo已安装，但找不到该命令"><a href="#3-hexo已安装，但找不到该命令" class="headerlink" title="3.hexo已安装，但找不到该命令"></a>3.<code>hexo</code>已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
+<h2 id="hexo已安装，但找不到该命令"><a href="#hexo已安装，但找不到该命令" class="headerlink" title="hexo已安装，但找不到该命令"></a>hexo已安装，但找不到该命令</h2><p>运行hexo -v查看安装版本时，又出现hexo不是内部命令，或者出现“bash: hexo: command not found”提示</p>
 <div align="center">
-<img src="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo3.png">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo3.png">
 </div>
 
 
 
 <p><b> 解决方法：</b><br>找到 C:\Users\Administrator\AppData\Roaming\npm\node_modules\hexo\bin\，将此目录添加到path环境变量中<br>重新打开命令窗口，成功。</p>
 <div align="center">
-<img src="https://github.com/giserkui/giserkui.github.io/blob/main/assets/img/hexo4.png">
+<img src="https://github.com/giserkui/giserkui.github.io/raw/main/assets/img/hexo4.png">
 </div>
 
 <h3 id="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我安装hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>
@@ -615,24 +615,26 @@
 </style>
 
 <div id="reward">
-    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">友</a>
 
     <!-- Modal Structure -->
     <div id="rewardModal" class="modal">
         <div class="modal-content">
             <a class="close modal-close"><i class="fas fa-times"></i></a>
-            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <h4 class="reward-title">欢迎一起学习交流</h4>
             <div class="reward-content">
                 <div class="reward-tabs">
                     <ul class="tabs row">
-                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                       <!-- <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li> -->
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
+                    <!--
                     <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="/" class="reward-img" alt="支付宝打赏二维码">
                     </div>
+                    -->
                     <div id="wechat">
-                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信">
                     </div>
                 </div>
             </div>
@@ -653,12 +655,92 @@
     
 
     
+        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
+<link rel="stylesheet" href="/css/gitment.css">
+
+<div class="gitment-card card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitment-content" class="card-content"></div>
+</div>
+
+<script src="/libs/gitment/gitment.js"></script>
+<script>
+var gitment = new Gitment({
+    id: 'Mon May 16 2022 21:25:00 GMT+0800',
+    owner: '',
+    repo: '',
+    oauth: {
+        client_id: '',
+        client_secret: ''
+    }
+});
+
+gitment.render('gitment-content');
+</script>
+
+    
+
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
+</div>
+
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'https://giserkui.github.io/2022/05/16/firstblog/';
+        this.page.identifier = '/2022/05/16/firstblog/';
+        this.page.title = 'hexo安装问题';
+    };
+    let disqus_shortname = '';
+
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
 
     
 
     
 
     
+
+    
+        <style>
+    .mvaline-card {
+        margin: 1.5rem auto;
+    }
+
+    .mvaline-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+</style>
+
+<div class="card mvaline-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="mvcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/minivaline/MiniValine.js"></script>
+<script>
+    new MiniValine(Object.assign({"enable":true,"serverURL":"https://minivaline.your-domain.top"}, {
+	  el: '#mvcomments',
+    }));
+</script>
 
     
 
@@ -681,7 +763,8 @@
                 <a href="/2022/05/16/firstblog/">
                     <div class="card-image">
                         
-                        <img src="/source/images/H.jpeg" class="responsive-img" alt="hexo安装问题">
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo安装问题">
                         
                         <span class="card-title">hexo安装问题</span>
                     </div>
@@ -899,17 +982,7 @@
 
 
 
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=504719347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 504719347" data-position="top" data-delay="50">
         <i class="fab fa-qq"></i>
     </a>
 
