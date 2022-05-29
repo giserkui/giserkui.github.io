@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Python 爬虫</title>
+      <link href="/2022/05/28/thirblog/"/>
+      <url>/2022/05/28/thirblog/</url>
+      
+        <content type="html"><![CDATA[<h1 id="用python从mou网页中简单抓取mou信息"><a href="#用python从mou网页中简单抓取mou信息" class="headerlink" title="用python从mou网页中简单抓取mou信息"></a>用python从mou网页中简单抓取mou信息</h1><blockquote><p>爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）</p></blockquote><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某知名襄阳富二代小朱想了解一下竞争对手，网站上发布了考试信息，我们准备帮他找一下和他考一个专业的学生有多少个，考试名单如下：</p><div align="center"><img src="/.io//1.png"></div><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>打开cmd运行如下命令，安装两个包requests、bs4</p><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">pip install requestspip install bs4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>如果使用pip安装bs4报错，可以采用本地安装方式：</p><p>1、下载bs4包到本地并解压（记住路径）：<a href="https://www.crummy.com/software/BeautifulSoup/bs4/download/">https://www.crummy.com/software/BeautifulSoup/bs4/download/</a><br>2、用cmd定位到下载的bs4包：beautifulsoup4-4.11.1</p><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">cd E:\Program Files (x86)\beautifulsoup4-4.11.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>3、本地安装bs4，使用命令：</p><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">python setup.py install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="爬取网页内容"><a href="#爬取网页内容" class="headerlink" title="爬取网页内容"></a>爬取网页内容</h3><p>ok，准备工作完成，爬取网页信息：</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">url <span class="token operator">=</span> <span class="token string">'http://jw.hbuas.edu.cn/info/1061/2393.htm'</span>  <span class="token comment">#网址</span>response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>  <span class="token comment"># 获取该网址的信息</span>response<span class="token punctuation">.</span>encoding<span class="token operator">=</span>response<span class="token punctuation">.</span>apparent_encoding  <span class="token comment">#这一步是判断网页的解码格式，因为网页的编码方式不同</span>html <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">'lxml'</span><span class="token punctuation">)</span> <span class="token comment">#使用lxml解析器，对网页信息进行解析</span>content<span class="token operator">=</span>html<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'#vsb_content &gt; div &gt; div &gt; div'</span><span class="token punctuation">)</span><span class="token comment">#将复制好的选择器信息放进select方法中，将获取到的内容作为tag形式放入一个列表中</span><span class="token comment">#这一步很关键，取决你的网页形式，需要F12打开网页源码，去查看你想要的内容在哪个div下</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>如果打印的结果不是0，说明已经成功抓取你想要的信息</p><h3 id="保存结果"><a href="#保存结果" class="headerlink" title="保存结果"></a>保存结果</h3><p>我们将抓取的信息保存到了txt文档中</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">filename <span class="token operator">=</span> <span class="token string">"1.txt"</span>fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"1.txt"</span><span class="token punctuation">,</span><span class="token string">"w"</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>    s <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>content<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>    fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>s<span class="token punctuation">)</span>fp<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"保存文件成功"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>我们抓取的信息如下：</p><div align="center"><img src="/.io//2.png"></div><h3 id="整理结果"><a href="#整理结果" class="headerlink" title="整理结果"></a>整理结果</h3><div align="center"><img src="/.io//3.png"></div>在EXCEL打开后，我们看到有315个学生考地理科学专业，听小朱说招90多个，离考试还有二十多天，在此也默默祝福小朱金榜题名！！！<p>最后，我用jieba对这组数据尝试做了词云分析，这些数据也很有趣，但我没做详细分析，比如考生涉及的城市武汉，襄阳较多；除汉族考生外回族考生也不少；<br>考生姓氏张、刘等较多；报考旅游、地理科学、学前教育、机械等专业考生较多，或许是该校优势专业，等等。。。</p><div align="center"><img src="/.io//4.png"></div><h4 id="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"><a href="#简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"></a>简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！</h4>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo部署</title>
       <link href="/2022/05/22/secblog/"/>
       <url>/2022/05/22/secblog/</url>

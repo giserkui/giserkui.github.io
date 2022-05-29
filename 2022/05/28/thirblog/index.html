@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo部署, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="hexo部署
-上一篇解决了hexo安装的问题，这一篇简单介绍如何进行hexo搭建一个简单博客
+    <meta name="keywords" content="Python 爬虫, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="用python从mou网页中简单抓取mou信息
+爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）
 
-下载主题hexo官方主题下载地址：https://hexo.io/themes/这里面挑选适合的主题，比如下载下面这个主题：https://gi">
+背景">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +22,7 @@
 
     
 
-    <title>hexo部署 | SunflowerBlog</title>
+    <title>Python 爬虫 | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +315,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo部署</h1>
+                    <h1 class="description center-align post-title">Python 爬虫</h1>
                 </div>
             </div>
         </div>
@@ -436,12 +436,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hexo/">
-                                <span class="chip bg-color">hexo</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
-                            <a href="/tags/github/">
-                                <span class="chip bg-color">github</span>
+                            <a href="/tags/%E7%88%AC%E8%99%AB/">
+                                <span class="chip bg-color">爬虫</span>
                             </a>
                         
                     </div>
@@ -465,7 +465,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-22
+                    2022-05-28
                 </div>
                 
 
@@ -489,23 +489,57 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h1><blockquote>
-<p>上一篇解决了hexo安装的问题，这一篇简单介绍如何进行hexo搭建一个简单博客</p>
+                <h1 id="用python从mou网页中简单抓取mou信息"><a href="#用python从mou网页中简单抓取mou信息" class="headerlink" title="用python从mou网页中简单抓取mou信息"></a>用python从mou网页中简单抓取mou信息</h1><blockquote>
+<p>爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）</p>
 </blockquote>
-<h2 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h2><p>hexo官方主题下载地址：<a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a><br>这里面挑选适合的主题，比如下载下面这个主题：<a target="_blank" rel="noopener" href="https://github.com/JoeyBling/hexo-theme-yilia-plus">https://github.com/JoeyBling/hexo-theme-yilia-plus</a><br>在根目录下，右键鼠标打开bash<br><img src="/.io//bash.png"><br>运行如下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> theme
-$ <span class="token function">git</span> clone --depth<span class="token operator">=</span><span class="token number">1</span> https://github.com/JoeyBling/hexo-theme-yilia-plus.git ./yilia-plus<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>修改hexo根目录下的 _config.yml中，修改theme: yilia-plus</p>
-<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>运行如下命令</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> themes/yilia-plus
-$ <span class="token function">git</span> pull<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="配置config"><a href="#配置config" class="headerlink" title="配置config"></a>配置config</h2><p>在_config.yml中配置自己喜欢的样式即可，github可以查看每个主题的config的内容，不再赘述。</p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>同样在根目录下打开bash，运行如下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ hexo clean
-$ hexo generate
-$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当然部署会遇到一些问题。比如： Failed to connect to github.com port 443: Timed out<br><img src="/.io//hexod.png"><br>出现这种问题很正常，这是本地部署，会存在网络的问题，可以打开（关闭）翻墙软件，多次尝试部署，成功部署会显示：<br><img src="/.io//hexosuc.png"><br>如果这种问题一直未能解决，可以选择Hexo Github Action、vercel 部署等方式。</p>
-<h3 id="以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是部署hexo遇到的一些小问题，如有错误，欢迎指出，谢谢您！！！</h3>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某知名襄阳富二代小朱想了解一下竞争对手，网站上发布了考试信息，我们准备帮他找一下和他考一个专业的学生有多少个，考试名单如下：</p>
+<div align="center">
+<img src="/.io//1.png">
+</div>
+
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>打开cmd运行如下命令，安装两个包requests、bs4</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">pip install requests
+pip install bs4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果使用pip安装bs4报错，可以采用本地安装方式：</p>
+<p>1、下载bs4包到本地并解压（记住路径）：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/download/">https://www.crummy.com/software/BeautifulSoup/bs4/download/</a><br>2、用cmd定位到下载的bs4包：beautifulsoup4-4.11.1</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">cd E:\Program Files (x86)\beautifulsoup4-4.11.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>3、本地安装bs4，使用命令：</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">python setup.py install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="爬取网页内容"><a href="#爬取网页内容" class="headerlink" title="爬取网页内容"></a>爬取网页内容</h3><p>ok，准备工作完成，爬取网页信息：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">url <span class="token operator">=</span> <span class="token string">'http://jw.hbuas.edu.cn/info/1061/2393.htm'</span>  <span class="token comment">#网址</span>
+response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>  <span class="token comment"># 获取该网址的信息</span>
+response<span class="token punctuation">.</span>encoding<span class="token operator">=</span>response<span class="token punctuation">.</span>apparent_encoding  <span class="token comment">#这一步是判断网页的解码格式，因为网页的编码方式不同</span>
+html <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">'lxml'</span><span class="token punctuation">)</span> <span class="token comment">#使用lxml解析器，对网页信息进行解析</span>
+content<span class="token operator">=</span>html<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'#vsb_content &gt; div &gt; div &gt; div'</span><span class="token punctuation">)</span>
+<span class="token comment">#将复制好的选择器信息放进select方法中，将获取到的内容作为tag形式放入一个列表中</span>
+<span class="token comment">#这一步很关键，取决你的网页形式，需要F12打开网页源码，去查看你想要的内容在哪个div下</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果打印的结果不是0，说明已经成功抓取你想要的信息</p>
+<h3 id="保存结果"><a href="#保存结果" class="headerlink" title="保存结果"></a>保存结果</h3><p>我们将抓取的信息保存到了txt文档中</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">filename <span class="token operator">=</span> <span class="token string">"1.txt"</span>
+fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"1.txt"</span><span class="token punctuation">,</span><span class="token string">"w"</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>        
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
+    s <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>content<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+fp<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"保存文件成功"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们抓取的信息如下：</p>
+<div align="center">
+<img src="/.io//2.png">
+</div>
+
+<h3 id="整理结果"><a href="#整理结果" class="headerlink" title="整理结果"></a>整理结果</h3><div align="center">
+<img src="/.io//3.png">
+</div>
+在EXCEL打开后，我们看到有315个学生考地理科学专业，听小朱说招90多个，离考试还有二十多天，在此也默默祝福小朱金榜题名！！！
+
+<p>最后，我用jieba对这组数据尝试做了词云分析，这些数据也很有趣，但我没做详细分析，比如考生涉及的城市武汉，襄阳较多；除汉族考生外回族考生也不少；<br>考生姓氏张、刘等较多；报考旅游、地理科学、学前教育、机械等专业考生较多，或许是该校优势专业，等等。。。</p>
+<div align="center">
+<img src="/.io//4.png">
+</div>
+
+<h4 id="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"><a href="#简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"></a>简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！</h4>
                 
             </div>
             <hr/>
@@ -531,7 +565,7 @@ $ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/05/22/secblog/">https://giserkui.github.io/2022/05/22/secblog/</a>
+                    <a href="https://giserkui.github.io/2022/05/28/thirblog/">https://giserkui.github.io/2022/05/28/thirblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -569,12 +603,12 @@ $ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hexo/">
-                                    <span class="chip bg-color">hexo</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
-                                <a href="/tags/github/">
-                                    <span class="chip bg-color">github</span>
+                                <a href="/tags/%E7%88%AC%E8%99%AB/">
+                                    <span class="chip bg-color">爬虫</span>
                                 </a>
                             
                         </div>
@@ -747,7 +781,7 @@ $ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-05-22T15-25-00',
+        id: '2022-05-28T22-18-35',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -771,7 +805,7 @@ $ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span><sp
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Sun May 22 2022 15:25:00 GMT+0800',
+    id: 'Sat May 28 2022 22:18:35 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -796,9 +830,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://giserkui.github.io/2022/05/22/secblog/';
-        this.page.identifier = '/2022/05/22/secblog/';
-        this.page.title = 'hexo部署';
+        this.page.url = 'https://giserkui.github.io/2022/05/28/thirblog/';
+        this.page.identifier = '/2022/05/28/thirblog/';
+        this.page.title = 'Python 爬虫';
     };
     let disqus_shortname = '';
 
@@ -857,9 +891,10 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05/28/thirblog/">
                     <div class="card-image">
@@ -877,9 +912,9 @@ gitment.render('gitment-content');
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -892,6 +927,7 @@ gitment.render('gitment-content');
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -914,13 +950,13 @@ gitment.render('gitment-content');
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/16/firstblog/">
+                <a href="/2022/05/22/secblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo安装问题">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo部署">
                         
-                        <span class="card-title">hexo安装问题</span>
+                        <span class="card-title">hexo部署</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -931,7 +967,7 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
                             </span>
                         <span class="publish-author">
                             
@@ -952,8 +988,8 @@ gitment.render('gitment-content');
                         <span class="chip bg-color">hexo</span>
                     </a>
                     
-                    <a href="/tags/npm/">
-                        <span class="chip bg-color">npm</span>
+                    <a href="/tags/github/">
+                        <span class="chip bg-color">github</span>
                     </a>
                     
                 </div>
