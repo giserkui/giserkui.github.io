@@ -4,11 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Python 爬虫, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="用python从mou网页中简单抓取mou信息
-爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）
+    <meta name="keywords" content="FID环境搭建, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="FID环境搭建遇到的问题参数默认值设置加载参数时出现了下面这个错误，错误原因是”path”参数是必须的
 
-背景">
+usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +21,7 @@
 
     
 
-    <title>Python 爬虫 | SunflowerBlog</title>
+    <title>FID环境搭建 | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python 爬虫</h1>
+                    <h1 class="description center-align post-title">FID环境搭建</h1>
                 </div>
             </div>
         </div>
@@ -436,12 +435,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/GAN/">
+                                <span class="chip bg-color">GAN</span>
                             </a>
                         
-                            <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                <span class="chip bg-color">爬虫</span>
+                            <a href="/tags/FID/">
+                                <span class="chip bg-color">FID</span>
                             </a>
                         
                     </div>
@@ -452,8 +451,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
-                                爬虫
+                            <a href="/categories/GAN/" class="post-category">
+                                GAN
                             </a>
                         
                     </div>
@@ -465,7 +464,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-05-31
                 </div>
                 
 
@@ -489,57 +488,40 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="用python从mou网页中简单抓取mou信息"><a href="#用python从mou网页中简单抓取mou信息" class="headerlink" title="用python从mou网页中简单抓取mou信息"></a>用python从mou网页中简单抓取mou信息</h1><blockquote>
-<p>爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）</p>
+                <h1 id="FID环境搭建遇到的问题"><a href="#FID环境搭建遇到的问题" class="headerlink" title="FID环境搭建遇到的问题"></a>FID环境搭建遇到的问题</h1><h2 id="参数默认值设置"><a href="#参数默认值设置" class="headerlink" title="参数默认值设置"></a>参数默认值设置</h2><p>加载参数时出现了下面这个错误，错误原因是”path”参数是必须的</p>
+<blockquote>
+<p>usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM_WORKERS] [–device DEVICE]<br>                    [–dims {64,192,768,2048}]<br>                    path path<br>fid_score.py: error: the following arguments are required: path<br>An exception has occurred, use %tb to see the full traceback.</p>
 </blockquote>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某知名襄阳富二代小朱想了解一下竞争对手，网站上发布了考试信息，我们准备帮他找一下和他考一个专业的学生有多少个，考试名单如下：</p>
-<div align="center">
-<img src="/.io//1.png">
-</div>
+<p><b> 解决方法：</b><br>虽然代码中存在”path”参数，但需要在”path”加上”–”,才可以设置该参数的默认值</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'--path'</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">str</span><span class="token punctuation">,</span> nargs<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">"./data/"</span><span class="token punctuation">,</span>
+                    <span class="token builtin">help</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'Paths to the generated images or '</span>
+                          <span class="token string">'to .npz statistic files'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="没有属性sched-getaffinity"><a href="#没有属性sched-getaffinity" class="headerlink" title="没有属性sched_getaffinity"></a>没有属性sched_getaffinity</h2><p>OS模块没有sched_getaffinity属性，具体报错信息：</p>
+<blockquote>
+<p>AttributeError: module ‘os’ has no attribute ‘sched_getaffinity’</p>
+</blockquote>
+<p>os.sched_getaffinity()Python中的method方法用于获取可在其上运行具有指定进程ID的进程的CPU组<br>此方法仅在某些LIUNX平台上可用。</p>
+<p><b> 解决方法：</b></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">num_workers <span class="token operator">=</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>打开cmd运行如下命令，安装两个包requests、bs4</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">pip install requests
-pip install bs4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>如果使用pip安装bs4报错，可以采用本地安装方式：</p>
-<p>1、下载bs4包到本地并解压（记住路径）：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/download/">https://www.crummy.com/software/BeautifulSoup/bs4/download/</a><br>2、用cmd定位到下载的bs4包：beautifulsoup4-4.11.1</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">cd E:\Program Files (x86)\beautifulsoup4-4.11.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>3、本地安装bs4，使用命令：</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">python setup.py install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="爬取网页内容"><a href="#爬取网页内容" class="headerlink" title="爬取网页内容"></a>爬取网页内容</h2><p>ok，准备工作完成，爬取网页信息：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">url <span class="token operator">=</span> <span class="token string">'http://jw.hbuas.edu.cn/info/1061/2393.htm'</span>  <span class="token comment">#网址</span>
-response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>  <span class="token comment"># 获取该网址的信息</span>
-response<span class="token punctuation">.</span>encoding<span class="token operator">=</span>response<span class="token punctuation">.</span>apparent_encoding  <span class="token comment">#这一步是判断网页的解码格式，因为网页的编码方式不同</span>
-html <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">'lxml'</span><span class="token punctuation">)</span> <span class="token comment">#使用lxml解析器，对网页信息进行解析</span>
-content<span class="token operator">=</span>html<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'#vsb_content &gt; div &gt; div &gt; div'</span><span class="token punctuation">)</span>
-<span class="token comment">#将复制好的选择器信息放进select方法中，将获取到的内容作为tag形式放入一个列表中</span>
-<span class="token comment">#这一步很关键，取决你的网页形式，需要F12打开网页源码，去查看你想要的内容在哪个div下</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果打印的结果不是0，说明已经成功抓取你想要的信息</p>
-<h2 id="保存结果"><a href="#保存结果" class="headerlink" title="保存结果"></a>保存结果</h2><p>我们将抓取的信息保存到了txt文档中</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">filename <span class="token operator">=</span> <span class="token string">"1.txt"</span>
-fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"1.txt"</span><span class="token punctuation">,</span><span class="token string">"w"</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>        
-<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>content<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-fp<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"保存文件成功"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们抓取的信息如下：</p>
-<div align="center">
-<img src="/.io//2.png">
-</div>
-
-<h2 id="整理结果"><a href="#整理结果" class="headerlink" title="整理结果"></a>整理结果</h2><div align="center">
-<img src="/.io//3.png">
-</div>
-在EXCEL打开后，我们看到有315个学生考地理科学专业，听小朱说招90多个，离考试还有二十多天，在此也默默祝福小朱金榜题名！！！
-
-<p>最后，我用jieba对这组数据尝试做了词云分析，这些数据也很有趣，但我没做详细分析，比如考生涉及的城市武汉，襄阳较多；除汉族考生外回族考生也不少；<br>考生姓氏张、刘等较多；报考旅游、地理科学、学前教育、机械等专业考生较多，或许是该校优势专业，等等。。。</p>
-<div align="center">
-<img src="/.io//4.png">
-</div>
-
-<h4 id="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"><a href="#简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"></a>简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！</h4>
+<h2 id="CUDA错误：no-kernel-image"><a href="#CUDA错误：no-kernel-image" class="headerlink" title="CUDA错误：no kernel image"></a>CUDA错误：no kernel image</h2><p>具体错误信息：</p>
+<blockquote>
+<p>CUDA error: no kernel image is available for execution on the device</p>
+</blockquote>
+<p>这个错误网上主要有两种解决办法，</p>
+<ol>
+<li>GPU与CUDA版本不兼容<br><b> 解决方法：</b><br>CUDA官网查看，python、cuda、torch的对应版本情况<br>下面这个链接可以直接查看版本对应号，找到之后，去重新安装正确的版本<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45564943/article/details/121688734">https://blog.csdn.net/weixin_45564943/article/details/121688734</a></li>
+<li>电脑配置不行<br>重新换个配置高的电脑</li>
+<li>编译器的问题<br>以上两种方法都没有解决我的问题，实在没有找到解决方法，因为这个问题是在spyder中报的错，所以就尝试将spyder换成了pycharm，运行之后，发现没有报错，具体为什么，我也搞不明白。。。</li>
+</ol>
+<p><b> 补充: </b></p>
+<ol>
+<li><p>如果你的问题是第一种，但你可能无法下载指定版本的torch,这时需要你自己编译torch，所以下面这个博主帮大家解决了如何编译Pytorch源码的问题<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43051923/article/details/108393510">https://blog.csdn.net/qq_43051923/article/details/108393510</a></p>
+</li>
+<li><p>如何查Windows下的CUDA版本？<br> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40447251/article/details/95861447">https://blog.csdn.net/qq_40447251/article/details/95861447</a></p>
+</li>
+</ol>
+<h3 id="以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！</h3>
                 
             </div>
             <hr/>
@@ -565,7 +547,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/05/28/thirblog/">https://giserkui.github.io/2022/05/28/thirblog/</a>
+                    <a href="https://giserkui.github.io/2022/05/31/fifthblog/">https://giserkui.github.io/2022/05/31/fifthblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -603,12 +585,12 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/GAN/">
+                                    <span class="chip bg-color">GAN</span>
                                 </a>
                             
-                                <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                    <span class="chip bg-color">爬虫</span>
+                                <a href="/tags/FID/">
+                                    <span class="chip bg-color">FID</span>
                                 </a>
                             
                         </div>
@@ -781,7 +763,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-05-28T22-18-35',
+        id: '2022-05-31T23-22-46',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -805,7 +787,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Sat May 28 2022 22:18:35 GMT+0800',
+    id: 'Tue May 31 2022 23:22:46 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -830,9 +812,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://giserkui.github.io/2022/05/28/thirblog/';
-        this.page.identifier = '/2022/05/28/thirblog/';
-        this.page.title = 'Python 爬虫';
+        this.page.url = 'https://giserkui.github.io/2022/05/31/fifthblog/';
+        this.page.identifier = '/2022/05/31/fifthblog/';
+        this.page.title = 'FID环境搭建';
     };
     let disqus_shortname = '';
 
@@ -895,13 +877,13 @@ gitment.render('gitment-content');
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/31/fifthblog/">
+                <a href="/2022/06/05/fourblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="FID环境搭建">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="GAN的基础知识">
                         
-                        <span class="card-title">FID环境搭建</span>
+                        <span class="card-title">GAN的基础知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -912,7 +894,7 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-31
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
                         </span>
                         <span class="publish-author">
                             
@@ -933,10 +915,6 @@ gitment.render('gitment-content');
                         <span class="chip bg-color">GAN</span>
                     </a>
                     
-                    <a href="/tags/FID/">
-                        <span class="chip bg-color">FID</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -948,13 +926,13 @@ gitment.render('gitment-content');
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/22/secblog/">
+                <a href="/2022/05/28/thirblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo部署">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Python 爬虫">
                         
-                        <span class="card-title">hexo部署</span>
+                        <span class="card-title">Python 爬虫</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -965,14 +943,14 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hexo/" class="post-category">
-                                    Hexo
+                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
+                                    爬虫
                                 </a>
                             
                             
@@ -982,12 +960,12 @@ gitment.render('gitment-content');
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
+                    <a href="/tags/%E7%88%AC%E8%99%AB/">
+                        <span class="chip bg-color">爬虫</span>
                     </a>
                     
                 </div>

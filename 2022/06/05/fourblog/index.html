@@ -4,11 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Python 爬虫, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="用python从mou网页中简单抓取mou信息
-爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）
+    <meta name="keywords" content="GAN的基础知识, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="GAN是啥？背景定义
 
-背景">
+通俗的说，GAN是用来生成以假乱真的图像，在遥感领域的应用就是扩充我们的样本，可以解决两个问题：一是样本缺少（生成特定类型的影像），另一个是样本缺失（有些影像可能受云遮挡）。
+
+GAN的组成
+
+GAN相当于是由两个网">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +25,7 @@
 
     
 
-    <title>Python 爬虫 | SunflowerBlog</title>
+    <title>GAN的基础知识 | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +318,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python 爬虫</h1>
+                    <h1 class="description center-align post-title">GAN的基础知识</h1>
                 </div>
             </div>
         </div>
@@ -436,12 +439,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                <span class="chip bg-color">爬虫</span>
+                            <a href="/tags/GAN/">
+                                <span class="chip bg-color">GAN</span>
                             </a>
                         
                     </div>
@@ -452,8 +451,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
-                                爬虫
+                            <a href="/categories/GAN/" class="post-category">
+                                GAN
                             </a>
                         
                     </div>
@@ -465,7 +464,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-06-05
                 </div>
                 
 
@@ -489,57 +488,51 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="用python从mou网页中简单抓取mou信息"><a href="#用python从mou网页中简单抓取mou信息" class="headerlink" title="用python从mou网页中简单抓取mou信息"></a>用python从mou网页中简单抓取mou信息</h1><blockquote>
-<p>爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）</p>
+                <h1 id="GAN是啥？"><a href="#GAN是啥？" class="headerlink" title="GAN是啥？"></a>GAN是啥？</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><b>定义</b></p>
+<blockquote>
+<p>通俗的说，GAN是用来生成以假乱真的图像，在遥感领域的应用就是扩充我们的样本，可以解决两个问题：一是样本缺少（生成特定类型的影像），另一个是样本缺失（有些影像可能受云遮挡）。</p>
 </blockquote>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某知名襄阳富二代小朱想了解一下竞争对手，网站上发布了考试信息，我们准备帮他找一下和他考一个专业的学生有多少个，考试名单如下：</p>
+<p><b>GAN的组成</b></p>
+<blockquote>
+<p>GAN相当于是由两个网络组成，一个是生成网络，一个是判别网络，生成网络相当于生产员，是用来将输入的随机噪声（原材料）生成一幅图像X（产品），判别网络相当于质检员，是将真实图像Y（产品标准）与生成图像X作比较，给出图像X是真还是假，通过她的判断，网络会不断优化，直至我们生成的图像（产品）接近于真实图像（接近于产品标准）。</p>
+</blockquote>
+<h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>GAN应用领域非常之广，不乏图像生成，图像转换（卫星图像→谷歌地图、给图像加滤镜、换脸、换衣服、素描→彩色图片），图像超分辨（修复一些比较老的影视剧）以及图像修复等等，但我学习的只涉及到图像生成领域，所以关于GAN的介绍也仅仅局限于图像生成。</p>
+<p>GAN 在图像生成上的应用又可分为以下几种：图像合成、文本到图像、图像到图像、视频。图像生成是研究最多的，并且该领域的研究已经证明了在图像合成中使用 GAN 的巨大潜力。</p>
+<h2 id="GAN发展"><a href="#GAN发展" class="headerlink" title="GAN发展"></a>GAN发展</h2><p>GAN如此之优秀，值得我们去探究了解她的发展。下面主要是对GAN经典模型的介绍，其他模型也大多是基于这些经典模型的改进。</p>
+<p>2014年Goodfellow等人提出了GAN模型，原理如图1所示。之后Conditional GAN（CGAN）被Mizra等人提出，该模型将标签引入到网络中，使得生成的图像可以按标签的顺序罗列，解决了传统GAN生成顺序混乱的问题，原理如图2所示。</p>
 <div align="center">
-<img src="/.io//1.png">
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-76a6a1d99af14b6785434af91cb77014_1440w.jpg%3Fsource%3D172ae18b&amp;refer=http%3A%2F%2Fpic1.zhimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1657697403&amp;t=359fbd3690280aef59550b9a3823347c">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图1 GAN基本框架
 </div>
-
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>打开cmd运行如下命令，安装两个包requests、bs4</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">pip install requests
-pip install bs4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>如果使用pip安装bs4报错，可以采用本地安装方式：</p>
-<p>1、下载bs4包到本地并解压（记住路径）：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/download/">https://www.crummy.com/software/BeautifulSoup/bs4/download/</a><br>2、用cmd定位到下载的bs4包：beautifulsoup4-4.11.1</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">cd E:\Program Files (x86)\beautifulsoup4-4.11.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>3、本地安装bs4，使用命令：</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">python setup.py install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="爬取网页内容"><a href="#爬取网页内容" class="headerlink" title="爬取网页内容"></a>爬取网页内容</h2><p>ok，准备工作完成，爬取网页信息：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">url <span class="token operator">=</span> <span class="token string">'http://jw.hbuas.edu.cn/info/1061/2393.htm'</span>  <span class="token comment">#网址</span>
-response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>  <span class="token comment"># 获取该网址的信息</span>
-response<span class="token punctuation">.</span>encoding<span class="token operator">=</span>response<span class="token punctuation">.</span>apparent_encoding  <span class="token comment">#这一步是判断网页的解码格式，因为网页的编码方式不同</span>
-html <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">'lxml'</span><span class="token punctuation">)</span> <span class="token comment">#使用lxml解析器，对网页信息进行解析</span>
-content<span class="token operator">=</span>html<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'#vsb_content &gt; div &gt; div &gt; div'</span><span class="token punctuation">)</span>
-<span class="token comment">#将复制好的选择器信息放进select方法中，将获取到的内容作为tag形式放入一个列表中</span>
-<span class="token comment">#这一步很关键，取决你的网页形式，需要F12打开网页源码，去查看你想要的内容在哪个div下</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果打印的结果不是0，说明已经成功抓取你想要的信息</p>
-<h2 id="保存结果"><a href="#保存结果" class="headerlink" title="保存结果"></a>保存结果</h2><p>我们将抓取的信息保存到了txt文档中</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">filename <span class="token operator">=</span> <span class="token string">"1.txt"</span>
-fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"1.txt"</span><span class="token punctuation">,</span><span class="token string">"w"</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>        
-<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>content<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-fp<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"保存文件成功"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们抓取的信息如下：</p>
+</div>
+<br>
 <div align="center">
-<img src="/.io//2.png">
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.icode9.com%2Fi%2Fll%2F%3Fi%3D20210306153717338.png%3F%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3OTM3ODQ3%2Csize_16%2Ccolor_FFFFFF%2Ct_70%23pic_center&amp;refer=http%3A%2F%2Fwww.icode9.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1657697365&amp;t=f4ce77837538c79656071de725512abf">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图2 CGAN基本框架
+</div>
 </div>
 
-<h2 id="整理结果"><a href="#整理结果" class="headerlink" title="整理结果"></a>整理结果</h2><div align="center">
-<img src="/.io//3.png">
-</div>
-在EXCEL打开后，我们看到有315个学生考地理科学专业，听小朱说招90多个，离考试还有二十多天，在此也默默祝福小朱金榜题名！！！
-
-<p>最后，我用jieba对这组数据尝试做了词云分析，这些数据也很有趣，但我没做详细分析，比如考生涉及的城市武汉，襄阳较多；除汉族考生外回族考生也不少；<br>考生姓氏张、刘等较多；报考旅游、地理科学、学前教育、机械等专业考生较多，或许是该校优势专业，等等。。。</p>
+<p>2016年Radford提出了DCGAN，将深度卷积模块引入到GAN中，提高了GAN网络生成模型的性能，从此卷积模块也成为了GAN网络的优化方式之一。在这一年InfoGAN也被提出，这篇文章主要加入了隐含向量，可解释隐含向量是改变字体的大小粗细和倾斜度。<br><br></p>
 <div align="center">
-<img src="/.io//4.png">
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs1.ax1x.com%2F2020%2F06%2F04%2FtB3BAf.md.png&amp;refer=http%3A%2F%2Fs1.ax1x.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1657697476&amp;t=3d4f1ae0e5826d29d832c52bdc0402d6">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图3 DCGAN基本框架
 </div>
+</div>
+<br>
+2017年Pix2pix被Isola提出，一个以CGAN为基础，用于图像翻译（Image Translation）的通用框架，它实现了模型结构和损失函数的通用化,CycleGAN与其类似，它与DiscoGAN、DualGAN网络结构也完全类似。之后WGAN（Wasserstein GAN）被提出，传统的GAN的使用的是KL散度或JS散度计算真假图像分布，所存在的问题是mode collapse，通俗的讲就是epoch越大，生成的图像会趋于某一个分布，而将Wasserstein距离的优势是计算两个分布的最小代价。随之WGAN-GP问世，该模型将gradient penalty (GP)引入，主要解决WGAN模型建模能力弱化，以及梯度爆炸或消失的问题。当然，在今年也提出了用的较多的GAN模型评价函数FID（Fréchet Inception 距离）。
 
-<h4 id="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"><a href="#简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"></a>简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！</h4>
+<p>从2018年起，GAN更加多样化，比较有代表性的比如StarGAN，它是将一个域的图像转换为目标域的多种图像，并支持多个目标域，简单说就是将原图像变换样式/风格style。例如，可根据人的性别设置图像域domain，在这种情况下，风格样式包括妆容类别、胡须和发型等。但这些基本上仍然是基于InfoGAN的思路，加入更多的隐含向量。</p>
+<p>2019年BigGAN,StyleGAN在图像生成领域应用还比较多，BigGAN顾名思义，就是大，体现在在训练中 Batch 采用了很大的 Batch，已经达到了 2048，在卷积的通道上也是变大了，还有就是网络的参数变多了，据计算，在 2048 的 Batch 下整个网络的参数达到了接近 16 亿。StyleGAN是一种无监督式的自动学习方法，她对图像的高层语义属性做一定解耦分离，例如人脸图像的姿势和身份、所生成图像的随机变化如雀斑和头发等，但是，这些所解析的特征向量并不固定，也存在有些特征向量无法解释的问题。</p>
+<p>2020年各大顶刊的文章对于GAN的变型数不胜数，主要基于了不同的需求，比如PSGAN将妆容和姿势进行风格变换，还引入了注意力机制。MISC针对多种背景的、多条件人像合成，提出了MISC，用于条件图像生成和图像组合。对于条件图像生成，利用条件间相关性来改进现有的条件注入机制condition injection mechanisms。</p>
+<p>2021年与2022年的文章也更多，比如文本转图像，改进注意力机制，将transformer加入到GAN中，但总体GAN模型框架并没有太大的改变。在此不再罗列模型名称（PS：每个人的模型名称都是千差万别，实在是怪我没有能力全记住，哈哈哈）</p>
+<p>##总结<br>以上就是GAN按时间顺序的发展历程，各有优缺点，也适应着各种不同的领域，总的来说，有网络结构的改进，比如加入标签、隐含向量、注意力等等；还有损失函数的优化，比如KL、JS、wasserstein距离等等。我们需要根据不同的需求去测试不同网络的效果。从下一节开始，我们将逐一介绍以上经典网络，以及如何实现。</p>
+<h3 id="以上是GAN一些基础知识，当让我了解也不够深入，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是GAN一些基础知识，当让我了解也不够深入，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是GAN一些基础知识，当让我了解也不够深入，如有错误，欢迎指出，谢谢您！！！"></a>以上是GAN一些基础知识，当让我了解也不够深入，如有错误，欢迎指出，谢谢您！！！</h3>
                 
             </div>
             <hr/>
@@ -565,7 +558,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/05/28/thirblog/">https://giserkui.github.io/2022/05/28/thirblog/</a>
+                    <a href="https://giserkui.github.io/2022/06/05/fourblog/">https://giserkui.github.io/2022/06/05/fourblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -603,12 +596,8 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                    <span class="chip bg-color">爬虫</span>
+                                <a href="/tags/GAN/">
+                                    <span class="chip bg-color">GAN</span>
                                 </a>
                             
                         </div>
@@ -781,7 +770,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-05-28T22-18-35',
+        id: '2022-06-05T15-16-46',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -805,7 +794,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Sat May 28 2022 22:18:35 GMT+0800',
+    id: 'Sun Jun 05 2022 15:16:46 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -830,9 +819,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://giserkui.github.io/2022/05/28/thirblog/';
-        this.page.identifier = '/2022/05/28/thirblog/';
-        this.page.title = 'Python 爬虫';
+        this.page.url = 'https://giserkui.github.io/2022/06/05/fourblog/';
+        this.page.identifier = '/2022/06/05/fourblog/';
+        this.page.title = 'GAN的基础知识';
     };
     let disqus_shortname = '';
 
@@ -891,9 +880,60 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/06/05/fourblog/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="GAN的基础知识">
+                        
+                        <span class="card-title">GAN的基础知识</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GAN/" class="post-category">
+                                    GAN
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/GAN/">
+                        <span class="chip bg-color">GAN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/05/31/fifthblog/">
                     <div class="card-image">
@@ -911,9 +951,9 @@ gitment.render('gitment-content');
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-31
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -935,59 +975,6 @@ gitment.render('gitment-content');
                     
                     <a href="/tags/FID/">
                         <span class="chip bg-color">FID</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/05/22/secblog/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo部署">
-                        
-                        <span class="card-title">hexo部署</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Hexo/" class="post-category">
-                                    Hexo
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
                     </a>
                     
                 </div>

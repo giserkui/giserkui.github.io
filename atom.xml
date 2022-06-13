@@ -6,7 +6,7 @@
   <link href="https://giserkui.github.io/atom.xml" rel="self"/>
   
   <link href="https://giserkui.github.io/"/>
-  <updated>2022-05-29T16:28:40.747Z</updated>
+  <updated>2022-06-13T07:46:42.815Z</updated>
   <id>https://giserkui.github.io/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GAN的基础知识</title>
+    <link href="https://giserkui.github.io/2022/06/05/fourblog/"/>
+    <id>https://giserkui.github.io/2022/06/05/fourblog/</id>
+    <published>2022-06-05T07:16:46.000Z</published>
+    <updated>2022-06-13T07:46:42.815Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;GAN是啥？&quot;&gt;&lt;a href=&quot;#GAN是啥？&quot; class=&quot;headerlink&quot; title=&quot;GAN是啥？&quot;&gt;&lt;/a&gt;GAN是啥？&lt;/h1&gt;&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/categories/GAN/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FID环境搭建</title>
+    <link href="https://giserkui.github.io/2022/05/31/fifthblog/"/>
+    <id>https://giserkui.github.io/2022/05/31/fifthblog/</id>
+    <published>2022-05-31T15:22:46.000Z</published>
+    <updated>2022-05-31T14:38:15.490Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;FID环境搭建遇到的问题&quot;&gt;&lt;a href=&quot;#FID环境搭建遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;FID环境搭建遇到的问题&quot;&gt;&lt;/a&gt;FID环境搭建遇到的问题&lt;/h1&gt;&lt;h2 id=&quot;参数默认值设置&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/categories/GAN/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+    <category term="FID" scheme="https://giserkui.github.io/tags/FID/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python 爬虫</title>
     <link href="https://giserkui.github.io/2022/05/28/thirblog/"/>
     <id>https://giserkui.github.io/2022/05/28/thirblog/</id>
     <published>2022-05-28T14:18:35.000Z</published>
-    <updated>2022-05-29T16:28:40.747Z</updated>
+    <updated>2022-05-31T14:38:46.774Z</updated>
     
     
       
@@ -34,7 +86,7 @@
     
     
     
-    <category term="Hexo" scheme="https://giserkui.github.io/categories/Hexo/"/>
+    <category term="爬虫" scheme="https://giserkui.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
     <category term="Python" scheme="https://giserkui.github.io/tags/Python/"/>
