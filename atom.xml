@@ -6,7 +6,7 @@
   <link href="https://giserkui.github.io/atom.xml" rel="self"/>
   
   <link href="https://giserkui.github.io/"/>
-  <updated>2022-06-13T14:35:52.397Z</updated>
+  <updated>2022-06-22T08:14:27.161Z</updated>
   <id>https://giserkui.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>GAN的基础知识</title>
+    <title>No.4 DCGAN</title>
+    <link href="https://giserkui.github.io/2022/06/11/seveblog/"/>
+    <id>https://giserkui.github.io/2022/06/11/seveblog/</id>
+    <published>2022-06-11T13:15:55.000Z</published>
+    <updated>2022-06-22T08:14:27.161Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NO-4-DCGAN&quot;&gt;&lt;a href=&quot;#NO-4-DCGAN&quot; class=&quot;headerlink&quot; title=&quot;NO.4 DCGAN&quot;&gt;&lt;/a&gt;NO.4 DCGAN&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/categories/GAN/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
+    <category term="DCGAN" scheme="https://giserkui.github.io/tags/DCGAN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NO.1 GAN的基础知识</title>
     <link href="https://giserkui.github.io/2022/06/05/fourblog/"/>
     <id>https://giserkui.github.io/2022/06/05/fourblog/</id>
     <published>2022-06-05T07:16:46.000Z</published>
-    <updated>2022-06-13T14:35:52.397Z</updated>
+    <updated>2022-06-22T08:15:17.569Z</updated>
     
     
       
@@ -39,21 +68,23 @@
     
     <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
     
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
   </entry>
   
   <entry>
-    <title>FID环境搭建</title>
-    <link href="https://giserkui.github.io/2022/05/31/fifthblog/"/>
-    <id>https://giserkui.github.io/2022/05/31/fifthblog/</id>
-    <published>2022-05-31T15:22:46.000Z</published>
-    <updated>2022-05-31T14:38:15.490Z</updated>
+    <title>No.3 FID环境搭建</title>
+    <link href="https://giserkui.github.io/2022/06/05/fifthblog/"/>
+    <id>https://giserkui.github.io/2022/06/05/fifthblog/</id>
+    <published>2022-06-05T04:22:46.000Z</published>
+    <updated>2022-06-22T08:15:36.552Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;FID环境搭建遇到的问题&quot;&gt;&lt;a href=&quot;#FID环境搭建遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;FID环境搭建遇到的问题&quot;&gt;&lt;/a&gt;FID环境搭建遇到的问题&lt;/h1&gt;&lt;h2 id=&quot;参数默认值设置&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;h1 id=&quot;NO-3-FID环境搭建遇到的问题&quot;&gt;&lt;a href=&quot;#NO-3-FID环境搭建遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;NO.3 FID环境搭建遇到的问题&quot;&gt;&lt;/a&gt;NO.3 FID环境搭建遇到的问题&lt;/h1&gt;&lt;h2</summary>
         
       
     
@@ -66,6 +97,35 @@
     
     <category term="FID" scheme="https://giserkui.github.io/tags/FID/"/>
     
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>No.2 GAN的实现</title>
+    <link href="https://giserkui.github.io/2022/05/31/sixblog/"/>
+    <id>https://giserkui.github.io/2022/05/31/sixblog/</id>
+    <published>2022-05-31T14:17:36.000Z</published>
+    <updated>2022-06-22T08:15:50.876Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NO-2-GAN的实现&quot;&gt;&lt;a href=&quot;#NO-2-GAN的实现&quot; class=&quot;headerlink&quot; title=&quot;NO.2 GAN的实现&quot;&gt;&lt;/a&gt;NO.2 GAN的实现&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/categories/GAN/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
   </entry>
   
   <entry>
@@ -73,7 +133,7 @@
     <link href="https://giserkui.github.io/2022/05/28/thirblog/"/>
     <id>https://giserkui.github.io/2022/05/28/thirblog/</id>
     <published>2022-05-28T14:18:35.000Z</published>
-    <updated>2022-05-31T14:38:46.774Z</updated>
+    <updated>2022-06-22T08:13:41.768Z</updated>
     
     
       
@@ -100,7 +160,7 @@
     <link href="https://giserkui.github.io/2022/05/22/secblog/"/>
     <id>https://giserkui.github.io/2022/05/22/secblog/</id>
     <published>2022-05-22T07:25:00.000Z</published>
-    <updated>2022-05-28T18:03:50.987Z</updated>
+    <updated>2022-06-22T08:08:49.390Z</updated>
     
     
       
@@ -127,7 +187,7 @@
     <link href="https://giserkui.github.io/2022/05/16/firstblog/"/>
     <id>https://giserkui.github.io/2022/05/16/firstblog/</id>
     <published>2022-05-16T13:25:00.000Z</published>
-    <updated>2022-05-28T16:41:17.888Z</updated>
+    <updated>2022-06-22T08:03:00.945Z</updated>
     
     
       

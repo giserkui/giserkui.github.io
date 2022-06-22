@@ -4,10 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="FID环境搭建, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="FID环境搭建遇到的问题参数默认值设置加载参数时出现了下面这个错误，错误原因是”path”参数是必须的
-
-usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
+    <meta name="keywords" content="No.4 DCGAN, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="NO.4 DCGAN前言
+本节主要介绍DCGAN（深度卷积生成对抗网络），该网络是在GAN的基础上，加入了卷积模块。2016年，Alec等人发表的论文《UNSUPERVISED REPRESENTATION LEARNING WITH DE">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +20,7 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
 
     
 
-    <title>FID环境搭建 | SunflowerBlog</title>
+    <title>No.4 DCGAN | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -314,12 +313,12 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">FID环境搭建</h1>
+                    <h1 class="description center-align post-title">No.4 DCGAN</h1>
                 </div>
             </div>
         </div>
@@ -439,8 +438,12 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
                                 <span class="chip bg-color">GAN</span>
                             </a>
                         
-                            <a href="/tags/FID/">
-                                <span class="chip bg-color">FID</span>
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                            <a href="/tags/DCGAN/">
+                                <span class="chip bg-color">DCGAN</span>
                             </a>
                         
                     </div>
@@ -464,7 +467,7 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-31
+                    2022-06-11
                 </div>
                 
 
@@ -488,40 +491,122 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="FID环境搭建遇到的问题"><a href="#FID环境搭建遇到的问题" class="headerlink" title="FID环境搭建遇到的问题"></a>FID环境搭建遇到的问题</h1><h2 id="参数默认值设置"><a href="#参数默认值设置" class="headerlink" title="参数默认值设置"></a>参数默认值设置</h2><p>加载参数时出现了下面这个错误，错误原因是”path”参数是必须的</p>
-<blockquote>
-<p>usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM_WORKERS] [–device DEVICE]<br>                    [–dims {64,192,768,2048}]<br>                    path path<br>fid_score.py: error: the following arguments are required: path<br>An exception has occurred, use %tb to see the full traceback.</p>
+                <h1 id="NO-4-DCGAN"><a href="#NO-4-DCGAN" class="headerlink" title="NO.4 DCGAN"></a>NO.4 DCGAN</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>本节主要介绍DCGAN（深度卷积生成对抗网络），该网络是在GAN的基础上，加入了卷积模块。2016年，Alec等人发表的论文《UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS》（简称DCGAN），首次提出将CNN模块应用到GAN模型中，从而代替全连接层。</p>
 </blockquote>
-<p><b> 解决方法：</b><br>虽然代码中存在”path”参数，但需要在”path”加上”–”,才可以设置该参数的默认值</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">parser<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">'--path'</span><span class="token punctuation">,</span> <span class="token builtin">type</span><span class="token operator">=</span><span class="token builtin">str</span><span class="token punctuation">,</span> nargs<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>default<span class="token operator">=</span><span class="token string">"./data/"</span><span class="token punctuation">,</span>
-                    <span class="token builtin">help</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token string">'Paths to the generated images or '</span>
-                          <span class="token string">'to .npz statistic files'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="没有属性sched-getaffinity"><a href="#没有属性sched-getaffinity" class="headerlink" title="没有属性sched_getaffinity"></a>没有属性sched_getaffinity</h2><p>OS模块没有sched_getaffinity属性，具体报错信息：</p>
-<blockquote>
-<p>AttributeError: module ‘os’ has no attribute ‘sched_getaffinity’</p>
-</blockquote>
-<p>os.sched_getaffinity()Python中的method方法用于获取可在其上运行具有指定进程ID的进程的CPU组<br>此方法仅在某些LIUNX平台上可用。</p>
-<p><b> 解决方法：</b></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">num_workers <span class="token operator">=</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="与GAN的区别"><a href="#与GAN的区别" class="headerlink" title="与GAN的区别"></a>与GAN的区别</h2><p>GAN的原理大多都是一样的，没有再重复，DCGAN主要从网络结构上改进了GAN，下面我们将从代码中讨论DCGAN有哪些创新点。</p>
+<h3 id="判别器"><a href="#判别器" class="headerlink" title="判别器"></a>判别器</h3><p>首先是DCGAN的G和D采用的卷积模块，替代了GAN的全连接层，但对于G和D也有一定的区别，首先下面是GAN的D的代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Discriminator</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>Discriminator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-<h2 id="CUDA错误：no-kernel-image"><a href="#CUDA错误：no-kernel-image" class="headerlink" title="CUDA错误：no kernel image"></a>CUDA错误：no kernel image</h2><p>具体错误信息：</p>
-<blockquote>
-<p>CUDA error: no kernel image is available for execution on the device</p>
-</blockquote>
-<p>这个错误网上主要有两种解决办法，</p>
-<ol>
-<li>GPU与CUDA版本不兼容<br><b> 解决方法：</b><br>CUDA官网查看，python、cuda、torch的对应版本情况<br>下面这个链接可以直接查看版本对应号，找到之后，去重新安装正确的版本<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45564943/article/details/121688734">https://blog.csdn.net/weixin_45564943/article/details/121688734</a></li>
-<li>电脑配置不行<br>重新换个配置高的电脑</li>
-<li>编译器的问题<br>以上两种方法都没有解决我的问题，实在没有找到解决方法，因为这个问题是在spyder中报的错，所以就尝试将spyder换成了pycharm，运行之后，发现没有报错，具体为什么，我也搞不明白。。。</li>
-</ol>
-<p><b> 补充: </b></p>
-<ol>
-<li><p>如果你的问题是第一种，但你可能无法下载指定版本的torch,这时需要你自己编译torch，所以下面这个博主帮大家解决了如何编译Pytorch源码的问题<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43051923/article/details/108393510">https://blog.csdn.net/qq_43051923/article/details/108393510</a></p>
-</li>
-<li><p>如何查Windows下的CUDA版本？<br> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40447251/article/details/95861447">https://blog.csdn.net/qq_40447251/article/details/95861447</a></p>
-</li>
-</ol>
-<h3 id="以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！"></a>以上是我计算FID搭建环境时遇到的问题，如有错误，欢迎指出，谢谢您！！！</h3>
+        self<span class="token punctuation">.</span>model <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>prod<span class="token punctuation">(</span>img_shape<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        img_flat <span class="token operator">=</span> img<span class="token punctuation">.</span>view<span class="token punctuation">(</span>img<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        validity <span class="token operator">=</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>img_flat<span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> validity<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p> 判别器基本保留了卷积模块的组成，依然采用的是LeakyReLU激活函数，只不过是将原来的全连接层Linear换成了Conv2d层，代码如下:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Discriminator</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+     <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+         <span class="token builtin">super</span><span class="token punctuation">(</span>Discriminator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+		 <span class="token keyword">def</span> <span class="token function">discriminator_block</span><span class="token punctuation">(</span>in_filters<span class="token punctuation">,</span> out_filters<span class="token punctuation">,</span> bn<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+		            block <span class="token operator">=</span> <span class="token punctuation">[</span>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_filters<span class="token punctuation">,</span> out_filters<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Dropout2d<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+					<span class="token keyword">if</span> bn<span class="token punctuation">:</span>
+		                block<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span>out_filters<span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+					<span class="token keyword">return</span> block
+		
+		  self<span class="token punctuation">.</span>model <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+		      <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span>opt<span class="token punctuation">.</span>channels<span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> bn<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		      <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		      <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		      <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		  <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>GAN的生成器采用的是Linear层与BatchNorml的组合，激活函数仍然是LeakyRelu，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">block</span><span class="token punctuation">(</span>in_feat<span class="token punctuation">,</span> out_feat<span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+           layers <span class="token operator">=</span> <span class="token punctuation">[</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>in_feat<span class="token punctuation">,</span> out_feat<span class="token punctuation">)</span><span class="token punctuation">]</span>
+           <span class="token keyword">if</span> normalize<span class="token punctuation">:</span>
+               layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span>out_feat<span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+           layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+           <span class="token keyword">return</span> layers
+
+       self<span class="token punctuation">.</span>model <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+           <span class="token operator">*</span>block<span class="token punctuation">(</span>opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           <span class="token operator">*</span>block<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           <span class="token operator">*</span>block<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           <span class="token operator">*</span>block<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>prod<span class="token punctuation">(</span>img_shape<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+           nn<span class="token punctuation">.</span>Tanh<span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于DCGAN，生成器G采用的是反卷积层，采用反卷积的目的就是可以将输入的随机噪声生成固定大小的向量（卷积的目的是将一个4<em>4变为2</em>2，反卷积就是将2<em>2变为4</em>4），因此反卷积是一个上采样的过程，实现生成器的方法有两种，一个是采用ConvTranspose2d，直接实现反卷积，另一种是采用上采样＋卷积的方式，在此给出两种实现反卷积的方式。下面代码是ConvTranspose2d方法，我们可以看到每一个卷积模块都是采用的是ConvTranspose2d+BatchNorm2d+ReLU，但这种方法如果卷积核为奇数时，会出现棋盘状的结果，所以对于kernel_size设置是一个关键：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">layer<span class="token operator">=</span><span class="token punctuation">[</span>nn<span class="token punctuation">.</span>ConvTranspose2d<span class="token punctuation">(</span>self<span class="token punctuation">.</span>in_channel<span class="token punctuation">,</span>self<span class="token punctuation">.</span>out_channel<span class="token punctuation">,</span>kernel_size<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>output_padding<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>padding<span class="token operator">=</span>padding<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>stride<span class="token operator">=</span>stride<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>bias<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                   nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span>self<span class="token punctuation">.</span>out_channel<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                   nn<span class="token punctuation">.</span>ReLU<span class="token punctuation">(</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+                   <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面代码是采用的上采样＋卷积的方式实现反卷积，模块主要是上采样+Conv2d卷积+BatchNorm2d+LeakyReLU的方式：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">self<span class="token punctuation">.</span>conv_blocks <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>           <span class="token comment">#nn.sequential{}是一个组成模型的壳子，用来容纳不同的操作</span>
+            nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">,</span>                    <span class="token comment"># BatchNorm2d</span>
+            nn<span class="token punctuation">.</span>Upsample<span class="token punctuation">(</span>scale_factor<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>            <span class="token comment">#上采样</span>
+            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">#二维卷积函数</span>
+            nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>        <span class="token comment">#relu激活函数</span>
+            nn<span class="token punctuation">.</span>Upsample<span class="token punctuation">(</span>scale_factor<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>            <span class="token comment">#上采样</span>
+            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token comment">#二维卷积</span>
+            nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>                <span class="token comment">#BN</span>
+            nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>channels<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> stride<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Tanh<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>                              <span class="token comment">#Tanh激活函数</span>
+        <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h2><p>简单列出来了DCGAN的效果展示图（训练集采用的是MSTAR）：</p>
+<div align="center">
+<img src="https://wx3.sinaimg.cn/mw2000/006b3B1mly1h3h2ek8iboj30sy0ei12e.jpg">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图1 Epoch 0
+</div>
+</div>
+
+<br>
+<div align="center">
+<img src="https://wx3.sinaimg.cn/mw2000/006b3B1mly1h3h2ekmr0ej30sy0ein6d.jpg">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图2 Epoch 400
+</div>
+</div>
+
+<br>
+<div align="center">
+<img src="https://wx1.sinaimg.cn/mw2000/006b3B1mly1h3h2el0kl6j30sy0ei12g.jpg">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图3 Epoch 800
+</div>
+</div>
+<br>
+
+<br>
+<div align="center">
+<img src="https://wx4.sinaimg.cn/mw2000/006b3B1mly1h3h2elfa0ej30sy0eitj3.jpg">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图4 Epoch 1000
+</div>
+</div>
+<br>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上是关于DCGAN的介绍，因为DCGAN的改进主要是网络结构，所以我们主要从代码的角度与GAN进行了对比，总体来说，主要创新点有以下几点：<br>1、判别器采用的是卷积，生成器采用的是反卷积，此外卷积模块都没有加入池化层。<br>2、加入了BN层，可加速模型训练<br>3、另外就是激活函数的区别，采用的是Relu与LeakyReLU，在生成器中最后一层采用的是Tanh，可以让模型更快学习。</p>
+<h4 id="以上是GAN的第四节关于DCGAN的讨论，主要介绍了创新点与在GAN的基础上有哪些改进的方法，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是GAN的第四节关于DCGAN的讨论，主要介绍了创新点与在GAN的基础上有哪些改进的方法，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是GAN的第四节关于DCGAN的讨论，主要介绍了创新点与在GAN的基础上有哪些改进的方法，如有错误，欢迎指出，谢谢您！！！"></a>以上是GAN的第四节关于DCGAN的讨论，主要介绍了创新点与在GAN的基础上有哪些改进的方法，如有错误，欢迎指出，谢谢您！！！</h4>
                 
             </div>
             <hr/>
@@ -547,7 +632,7 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/05/31/fifthblog/">https://giserkui.github.io/2022/05/31/fifthblog/</a>
+                    <a href="https://giserkui.github.io/2022/06/11/seveblog/">https://giserkui.github.io/2022/06/11/seveblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -589,8 +674,12 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
                                     <span class="chip bg-color">GAN</span>
                                 </a>
                             
-                                <a href="/tags/FID/">
-                                    <span class="chip bg-color">FID</span>
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
+                                </a>
+                            
+                                <a href="/tags/DCGAN/">
+                                    <span class="chip bg-color">DCGAN</span>
                                 </a>
                             
                         </div>
@@ -763,7 +852,7 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-05-31T23-22-46',
+        id: '2022-06-11T21-15-55',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -787,7 +876,7 @@ usage: fid_score.py [-h] [–batch-size BATCH_SIZE] [–num-workers NUM">
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Tue May 31 2022 23:22:46 GMT+0800',
+    id: 'Sat Jun 11 2022 21:15:55 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -812,9 +901,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://giserkui.github.io/2022/05/31/fifthblog/';
-        this.page.identifier = '/2022/05/31/fifthblog/';
-        this.page.title = 'FID环境搭建';
+        this.page.url = 'https://giserkui.github.io/2022/06/11/seveblog/';
+        this.page.identifier = '/2022/06/11/seveblog/';
+        this.page.title = 'No.4 DCGAN';
     };
     let disqus_shortname = '';
 
@@ -873,17 +962,18 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/06/05/fourblog/">
+                <a href="/2022/06/11/seveblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="GAN的基础知识">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="No.4 DCGAN">
                         
-                        <span class="card-title">GAN的基础知识</span>
+                        <span class="card-title">No.4 DCGAN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -893,9 +983,67 @@ gitment.render('gitment-content');
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/GAN/" class="post-category">
+                                    GAN
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/GAN/">
+                        <span class="chip bg-color">GAN</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/DCGAN/">
+                        <span class="chip bg-color">DCGAN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/05/fourblog/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="NO.1 GAN的基础知识">
+                        
+                        <span class="card-title">NO.1 GAN的基础知识</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -915,57 +1063,8 @@ gitment.render('gitment-content');
                         <span class="chip bg-color">GAN</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/05/28/thirblog/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Python 爬虫">
-                        
-                        <span class="card-title">Python 爬虫</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
-                                    爬虫
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%88%AC%E8%99%AB/">
-                        <span class="chip bg-color">爬虫</span>
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>

@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Python 爬虫, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="用python从mou网页中简单抓取mou信息
-爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）
-
-背景">
+    <meta name="keywords" content="No.2 GAN的实现, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="NO.2 GAN的实现前言
+这是GAN相关内容的第二节介绍，考虑到大多数的资料可能原理是原理，代码是代码，我希望我写的东西，可以将代码与原理尽量一一对应，因为当我们明白代码是如何实现这些数学理论后，我们就可以去改进、完善模型。但介绍原理我并">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +20,7 @@
 
     
 
-    <title>Python 爬虫 | SunflowerBlog</title>
+    <title>No.2 GAN的实现 | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python 爬虫</h1>
+                    <h1 class="description center-align post-title">No.2 GAN的实现</h1>
                 </div>
             </div>
         </div>
@@ -436,12 +434,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="/tags/GAN/">
+                                <span class="chip bg-color">GAN</span>
                             </a>
                         
-                            <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                <span class="chip bg-color">爬虫</span>
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
                             </a>
                         
                     </div>
@@ -452,8 +450,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
-                                爬虫
+                            <a href="/categories/GAN/" class="post-category">
+                                GAN
                             </a>
                         
                     </div>
@@ -465,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-28
+                    2022-05-31
                 </div>
                 
 
@@ -489,105 +487,173 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="用python从mou网页中简单抓取mou信息"><a href="#用python从mou网页中简单抓取mou信息" class="headerlink" title="用python从mou网页中简单抓取mou信息"></a>用python从mou网页中简单抓取mou信息</h1><blockquote>
-<p>爬虫并不专业，但写这篇是因为昨天蒋总提到爬虫，担心离职前没时间交流这个事，所以先写个blog，以防万一哪天你（您）又问我了，我不在公司咋整？（后半句纯粹为自己写这篇找的理由，哈哈哈 ）</p>
+                <h1 id="NO-2-GAN的实现"><a href="#NO-2-GAN的实现" class="headerlink" title="NO.2 GAN的实现"></a>NO.2 GAN的实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>这是GAN相关内容的第二节介绍，考虑到大多数的资料可能原理是原理，代码是代码，我希望我写的东西，可以将代码与原理尽量一一对应，因为当我们明白代码是如何实现这些数学理论后，我们就可以去改进、完善模型。<br>但介绍原理我并不擅长，只能利用我薄弱的数学基础，以我能理解的方式去介绍，所以难免可能会有错误，如果你有幸看到我这篇文章又很费心碰巧发现了错误，恳请批评指正~</p>
 </blockquote>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某知名襄阳富二代小朱想了解一下竞争对手，网站上发布了考试信息，我们准备帮他找一下和他考一个专业的学生有多少个，考试名单如下：</p>
-<br>
+<p>为了将原理与代码对应，我们主要分两部分介绍：前向传播与后向传播。在GAN中前向传播包括了生成网络与判别网络两部分，后向传播是损失函数。</p>
+<h2 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h2><p> 初始化，随机产生一组变量，此时初始化的G与D没有任何作用。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">valid <span class="token operator">=</span> Variable<span class="token punctuation">(</span>Tensor<span class="token punctuation">(</span>imgs<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fill_<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>随机生成一组分布z，将z输入到G得到一组假图（fake images）即x’ = G(z)，在整个图像生成中，G并没有输入真实图片x，它也不在乎真实图片x长什么样，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">z <span class="token operator">=</span> Variable<span class="token punctuation">(</span>Tensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>imgs<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#随机噪声</span>
+gen_imgs <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">)</span>    <span class="token comment">#生成器生成fake图像</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>取一组图片x，输入到判别器计算D(x)，对于判别器会接收真实图像，也会接收G生成的fake图，接收真图代码如下</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">real_imgs <span class="token operator">=</span> Variable<span class="token punctuation">(</span>imgs<span class="token punctuation">.</span><span class="token builtin">type</span><span class="token punctuation">(</span>Tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+discriminator<span class="token punctuation">(</span>real_imgs<span class="token punctuation">)</span>    <span class="token comment">#判别器</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>以上generator与discriminator即为GAN搭建的网络模型，代码在最后给出。</p>
+<h2 id="后向传播"><a href="#后向传播" class="headerlink" title="后向传播"></a>后向传播</h2><p>因为判别器D与生成器G是两个不同的网络模型，所以是分别计算loss值后进行反向传播。对于G，它的目标是让D误以为x’是真实图片，因此G的损失函数可以是D(x’)和1之间的差距，这个差距越小，表明在D看来x’越真实。按照loss减小的方向，调整G的每一个参数，便完成了G的一次优化。我们需要固定判别器优化生成器，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">g_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">)</span><span class="token punctuation">,</span> valid<span class="token punctuation">)</span>  <span class="token comment">#计算loss</span>
+g_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">#反向传播</span>
+optimizer_G<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">#优化参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>对于D，损失函数包括两方面：第一是真图计算的D(x)应当比较大，例如和1尽可能接近；第二是fake图x’对应的D(x’)应当比较小，例如和0尽可能接近。同理以loss函数减小的方向，调整D的每一个参数实现对D优化。我们需要固定生成器优化判别器，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">real_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>real_imgs<span class="token punctuation">)</span><span class="token punctuation">,</span> valid<span class="token punctuation">)</span>
+fake_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fake<span class="token punctuation">)</span>
+d_loss <span class="token operator">=</span> <span class="token punctuation">(</span>real_loss <span class="token operator">+</span> fake_loss<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span>
+d_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+optimizer_D<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ok,G和D的优化都用到了adversarial_loss，那这个loss代码如何实现的呢？</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">adversarial_loss <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>BCELoss<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其实就是使用了BCELoss（交叉熵），然后BCELoss的公式如下图</p>
 <div align="center">
-<img src="https://wx3.sinaimg.cn/mw2000/006b3B1mly1h3h2psh6l8j30wv0o446u.jpg">
+<img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.pianshen.com%2Fimages%2F127%2F0dbe652bb1b3227e59e62749290e6a57.png&amp;refer=http%3A%2F%2Fwww.pianshen.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1657812535&amp;t=d85047d914af232e2bf8823350ebce27">
 <br>
 <div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
-图1 需要爬虫的信息
+图1 BCElOSS
 </div>
 </div>
 <br>
 
-<!--
+<p>ok,而论文给的loss计算公式如下，发现与BCELoss的公式还是有差别的，发现第一项少了BCE公式的后半部分，第二项少了BCE公式的前半部分。注意第一项的E x ∼ p r ( x ) E的下标表示x来自真实样本，所以在BCE公式的yn = 1，所以BCE公式的后半部分为0，第二项同理也为0，我们也可以看到代码中D也是分别求了两个Loss值。至于生成器的公式同理，在此也没有再赘述。</p>
 <div align="center">
-<img src="./thirblog/1.png"/>
-</div>
--->
-
-<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>打开cmd运行如下命令，安装两个包requests、bs4</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">pip install requests
-pip install bs4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>如果使用pip安装bs4报错，可以采用本地安装方式：</p>
-<p>1、下载bs4包到本地并解压（记住路径）：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/download/">https://www.crummy.com/software/BeautifulSoup/bs4/download/</a><br>2、用cmd定位到下载的bs4包：beautifulsoup4-4.11.1</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">cd E:\Program Files (x86)\beautifulsoup4-4.11.1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>3、本地安装bs4，使用命令：</p>
-<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">python setup.py install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="爬取网页内容"><a href="#爬取网页内容" class="headerlink" title="爬取网页内容"></a>爬取网页内容</h2><p>ok，准备工作完成，爬取网页信息：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">url <span class="token operator">=</span> <span class="token string">'http://jw.hbuas.edu.cn/info/1061/2393.htm'</span>  <span class="token comment">#网址</span>
-response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span>  <span class="token comment"># 获取该网址的信息</span>
-response<span class="token punctuation">.</span>encoding<span class="token operator">=</span>response<span class="token punctuation">.</span>apparent_encoding  <span class="token comment">#这一步是判断网页的解码格式，因为网页的编码方式不同</span>
-html <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>response<span class="token punctuation">.</span>text<span class="token punctuation">,</span><span class="token string">'lxml'</span><span class="token punctuation">)</span> <span class="token comment">#使用lxml解析器，对网页信息进行解析</span>
-content<span class="token operator">=</span>html<span class="token punctuation">.</span>select<span class="token punctuation">(</span><span class="token string">'#vsb_content &gt; div &gt; div &gt; div'</span><span class="token punctuation">)</span>
-<span class="token comment">#将复制好的选择器信息放进select方法中，将获取到的内容作为tag形式放入一个列表中</span>
-<span class="token comment">#这一步很关键，取决你的网页形式，需要F12打开网页源码，去查看你想要的内容在哪个div下</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果打印的结果不是0，说明已经成功抓取你想要的信息</p>
-<h2 id="保存结果"><a href="#保存结果" class="headerlink" title="保存结果"></a>保存结果</h2><p>我们将抓取的信息保存到了txt文档中</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">filename <span class="token operator">=</span> <span class="token string">"1.txt"</span>
-fp <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"1.txt"</span><span class="token punctuation">,</span><span class="token string">"w"</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>        
-<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>content<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>get_text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    fp<span class="token punctuation">.</span>write<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-fp<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"保存文件成功"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>我们抓取的信息如下：</p>
-<br>
-<div align="center">
-<img src="https://wx2.sinaimg.cn/mw2000/006b3B1mly1h3h2psld3yj30ly0hhjtl.jpg">
+<img src="https://img-blog.csdnimg.cn/20191213145817665.png">
 <br>
 <div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
-图2 爬虫结果
+图2 原文中的Loss计算公式
 </div>
 </div>
 <br>
 
-<!--
-<div align="center">
-<img src="./thirblog/2.png"/>
-</div>
--->
+<h2 id="网络模型代码"><a href="#网络模型代码" class="headerlink" title="网络模型代码"></a>网络模型代码</h2><p>前向传播我们没有具体给出G与D的模型代码，在此我们给出模型代码与训练优化的实现代码，但是在此没有给出如何加载数据集的程序，后面我们会介绍如何用torch构建无标签和有标签的数据集：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Generator</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>Generator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-<h2 id="整理结果"><a href="#整理结果" class="headerlink" title="整理结果"></a>整理结果</h2><br>
-<div align="center">
-<img src="https://wx1.sinaimg.cn/mw2000/006b3B1mly1h3h2pssdr6j30n30atn55.jpg">
-<br>
-<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
-图3 统计结果
-</div>
-</div>
-<br>
+        <span class="token keyword">def</span> <span class="token function">block</span><span class="token punctuation">(</span>in_feat<span class="token punctuation">,</span> out_feat<span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            layers <span class="token operator">=</span> <span class="token punctuation">[</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span>in_feat<span class="token punctuation">,</span> out_feat<span class="token punctuation">)</span><span class="token punctuation">]</span>
+            <span class="token keyword">if</span> normalize<span class="token punctuation">:</span>
+                layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>BatchNorm1d<span class="token punctuation">(</span>out_feat<span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> layers
 
-<!--
-<div align="center">
-<img src="./thirblog/3.png"/>
-</div>
--->
+        self<span class="token punctuation">.</span>model <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            <span class="token operator">*</span>block<span class="token punctuation">(</span>opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token operator">*</span>block<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token operator">*</span>block<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token operator">*</span>block<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>prod<span class="token punctuation">(</span>img_shape<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Tanh<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
 
-<p>在EXCEL打开后，我们看到有315个学生考地理科学专业，听小朱说招90多个，离考试还有二十多天，在此也默默祝福小朱金榜题名！！！</p>
-<p>最后，我用jieba对这组数据尝试做了词云分析，这些数据也很有趣，但我没做详细分析，比如考生涉及的城市武汉，襄阳较多；除汉族考生外回族考生也不少；<br>考生姓氏张、刘等较多；报考旅游、地理科学、学前教育、机械等专业考生较多，或许是该校优势专业，等等。。。</p>
-<br>
-<div align="center">
-<img src="https://wx4.sinaimg.cn/mw2000/006b3B1mly1h3h2pszm52j311i0ku11a.jpg">
-<br>
-<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
-图4 词云分析
-</div>
-</div>
-<br>
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        img <span class="token operator">=</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>z<span class="token punctuation">)</span>
+        img <span class="token operator">=</span> img<span class="token punctuation">.</span>view<span class="token punctuation">(</span>img<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">*</span>img_shape<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> img
 
-<!--
-<div align="center">
-<img src="./thirblog/4.png"/>
-</div>
--->
 
-<h4 id="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"><a href="#简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！"></a>简单的一个从网页抓取信息的例子就完成了，如有错误，欢迎指出，谢谢您！！！</h4>
+<span class="token keyword">class</span> <span class="token class-name">Discriminator</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>Discriminator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        self<span class="token punctuation">.</span>model <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>prod<span class="token punctuation">(</span>img_shape<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">512</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">512</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        img_flat <span class="token operator">=</span> img<span class="token punctuation">.</span>view<span class="token punctuation">(</span>img<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        validity <span class="token operator">=</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>img_flat<span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> validity
+
+
+<span class="token comment"># Loss function</span>
+adversarial_loss <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>BCELoss<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># Initialize generator and discriminator</span>
+generator <span class="token operator">=</span> Generator<span class="token punctuation">(</span><span class="token punctuation">)</span>
+discriminator <span class="token operator">=</span> Discriminator<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> cuda<span class="token punctuation">:</span>
+    generator<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    discriminator<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    adversarial_loss<span class="token punctuation">.</span>cuda<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Configure data loader</span>
+img_transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token comment"># transforms.ToPILImage(),</span>
+    transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># (x-mean) / std</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+optimizer_G <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>Adam<span class="token punctuation">(</span>generator<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span>opt<span class="token punctuation">.</span>lr<span class="token punctuation">,</span> betas<span class="token operator">=</span><span class="token punctuation">(</span>opt<span class="token punctuation">.</span>b1<span class="token punctuation">,</span> opt<span class="token punctuation">.</span>b2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+optimizer_D <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>Adam<span class="token punctuation">(</span>discriminator<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lr<span class="token operator">=</span>opt<span class="token punctuation">.</span>lr<span class="token punctuation">,</span> betas<span class="token operator">=</span><span class="token punctuation">(</span>opt<span class="token punctuation">.</span>b1<span class="token punctuation">,</span> opt<span class="token punctuation">.</span>b2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+Tensor <span class="token operator">=</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>FloatTensor <span class="token keyword">if</span> cuda <span class="token keyword">else</span> torch<span class="token punctuation">.</span>FloatTensor
+
+ <span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>opt<span class="token punctuation">.</span>n_epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i<span class="token punctuation">,</span> img <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>dataloader<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            imgs <span class="token operator">=</span> img
+            
+            valid <span class="token operator">=</span> Variable<span class="token punctuation">(</span>Tensor<span class="token punctuation">(</span>imgs<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fill_<span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+            fake <span class="token operator">=</span> Variable<span class="token punctuation">(</span>Tensor<span class="token punctuation">(</span>imgs<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>fill_<span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> requires_grad<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># Configure input</span>
+            real_imgs <span class="token operator">=</span> Variable<span class="token punctuation">(</span>imgs<span class="token punctuation">.</span><span class="token builtin">type</span><span class="token punctuation">(</span>Tensor<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># -----------------</span>
+            <span class="token comment">#  Train Generator</span>
+            <span class="token comment"># -----------------</span>
+
+            optimizer_G<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># Sample noise as generator input</span>
+            z <span class="token operator">=</span> Variable<span class="token punctuation">(</span>Tensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>imgs<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># Generate a batch of images</span>
+            gen_imgs <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">)</span>
+
+            <span class="token comment"># Loss measures generator's ability to fool the discriminator</span>
+            g_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">)</span><span class="token punctuation">,</span> valid<span class="token punctuation">)</span>
+
+            g_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            optimizer_G<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># ---------------------</span>
+            <span class="token comment">#  Train Discriminator</span>
+            <span class="token comment"># ---------------------</span>
+
+            optimizer_D<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            <span class="token comment"># Measure discriminator's ability to classify real from generated samples</span>
+            real_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>real_imgs<span class="token punctuation">)</span><span class="token punctuation">,</span> valid<span class="token punctuation">)</span>
+            fake_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> fake<span class="token punctuation">)</span>
+            d_loss <span class="token operator">=</span> <span class="token punctuation">(</span>real_loss <span class="token operator">+</span> fake_loss<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span>
+
+            d_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            optimizer_D<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            <span class="token keyword">print</span><span class="token punctuation">(</span>
+                <span class="token string">"[Epoch %d/%d] [Batch %d/%d] [D loss: %f] [G loss: %f]"</span>
+                <span class="token operator">%</span> <span class="token punctuation">(</span>epoch<span class="token punctuation">,</span> opt<span class="token punctuation">.</span>n_epochs<span class="token punctuation">,</span> i<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>dataloader<span class="token punctuation">)</span><span class="token punctuation">,</span> d_loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> g_loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">)</span>
+
+            batches_done <span class="token operator">=</span> epoch <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>dataloader<span class="token punctuation">)</span> <span class="token operator">+</span> i
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>batches_done <span class="token operator">%</span> opt<span class="token punctuation">.</span>sample_interval <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">and</span> epoch <span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                save_image<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">.</span>data<span class="token punctuation">,</span> savename<span class="token operator">+</span>save_filename<span class="token operator">+</span><span class="token string">'_'</span><span class="token operator">+</span><span class="token string">"%d.png"</span> <span class="token operator">%</span> batches_done<span class="token punctuation">,</span> nrow<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="以上是GAN的第二节介绍，主要介绍了原理与实现，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是GAN的第二节介绍，主要介绍了原理与实现，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是GAN的第二节介绍，主要介绍了原理与实现，如有错误，欢迎指出，谢谢您！！！"></a>以上是GAN的第二节介绍，主要介绍了原理与实现，如有错误，欢迎指出，谢谢您！！！</h3>
                 
             </div>
             <hr/>
@@ -613,7 +679,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/05/28/thirblog/">https://giserkui.github.io/2022/05/28/thirblog/</a>
+                    <a href="https://giserkui.github.io/2022/05/31/sixblog/">https://giserkui.github.io/2022/05/31/sixblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -651,12 +717,12 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="/tags/GAN/">
+                                    <span class="chip bg-color">GAN</span>
                                 </a>
                             
-                                <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                    <span class="chip bg-color">爬虫</span>
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
                                 </a>
                             
                         </div>
@@ -829,7 +895,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-05-28T22-18-35',
+        id: '2022-05-31T22-17-36',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -853,7 +919,7 @@ fp<span class="token punctuation">.</span>close<span class="token punctuation">(
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Sat May 28 2022 22:18:35 GMT+0800',
+    id: 'Tue May 31 2022 22:17:36 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -878,9 +944,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://giserkui.github.io/2022/05/28/thirblog/';
-        this.page.identifier = '/2022/05/28/thirblog/';
-        this.page.title = 'Python 爬虫';
+        this.page.url = 'https://giserkui.github.io/2022/05/31/sixblog/';
+        this.page.identifier = '/2022/05/31/sixblog/';
+        this.page.title = 'No.2 GAN的实现';
     };
     let disqus_shortname = '';
 
@@ -943,13 +1009,13 @@ gitment.render('gitment-content');
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/31/sixblog/">
+                <a href="/2022/06/05/fifthblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="No.2 GAN的实现">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="No.3 FID环境搭建">
                         
-                        <span class="card-title">No.2 GAN的实现</span>
+                        <span class="card-title">No.3 FID环境搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -960,7 +1026,7 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-31
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-06-05
                         </span>
                         <span class="publish-author">
                             
@@ -981,6 +1047,10 @@ gitment.render('gitment-content');
                         <span class="chip bg-color">GAN</span>
                     </a>
                     
+                    <a href="/tags/FID/">
+                        <span class="chip bg-color">FID</span>
+                    </a>
+                    
                     <a href="/tags/python/">
                         <span class="chip bg-color">python</span>
                     </a>
@@ -996,13 +1066,13 @@ gitment.render('gitment-content');
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/22/secblog/">
+                <a href="/2022/05/28/thirblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="hexo部署">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Python 爬虫">
                         
-                        <span class="card-title">hexo部署</span>
+                        <span class="card-title">Python 爬虫</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1013,14 +1083,14 @@ gitment.render('gitment-content');
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hexo/" class="post-category">
-                                    Hexo
+                            <a href="/categories/%E7%88%AC%E8%99%AB/" class="post-category">
+                                    爬虫
                                 </a>
                             
                             
@@ -1030,12 +1100,12 @@ gitment.render('gitment-content');
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/github/">
-                        <span class="chip bg-color">github</span>
+                    <a href="/tags/%E7%88%AC%E8%99%AB/">
+                        <span class="chip bg-color">爬虫</span>
                     </a>
                     
                 </div>

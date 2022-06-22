@@ -369,11 +369,11 @@
             <div class="tag-chips">
                 
                 
-                <a href="/tags/GAN/" title="GAN: 2">
+                <a href="/tags/GAN/" title="GAN: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="GAN" style="background-color: #F9EBEA;">GAN
-                        <span class="tag-length">2</span>
+                        <span class="tag-length">4</span>
                     </span>
                 </a>
                 
@@ -387,10 +387,19 @@
                 </a>
                 
                 
+                <a href="/tags/python/" title="python: 4">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="python" style="background-color: #D5F5E3;">python
+                        <span class="tag-length">4</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/hexo/" title="hexo: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="hexo" style="background-color: #D5F5E3;">hexo
+                            data-tagname="hexo" style="background-color: #E8F8F5;">hexo
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -399,7 +408,7 @@
                 <a href="/tags/npm/" title="npm: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="npm" style="background-color: #E8F8F5;">npm
+                            data-tagname="npm" style="background-color: #FEF9E7;">npm
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -408,7 +417,16 @@
                 <a href="/tags/github/" title="github: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="github" style="background-color: #FEF9E7;">github
+                            data-tagname="github" style="background-color: #F8F9F9;">github
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/DCGAN/" title="DCGAN: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="DCGAN" style="background-color: #82E0AA;">DCGAN
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -417,7 +435,7 @@
                 <a href="/tags/Python/" title="Python: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
-                            data-tagname="Python" style="background-color: #F8F9F9;">Python
+                            data-tagname="Python" style="background-color: #D7BDE2;">Python
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -426,7 +444,7 @@
                 <a href="/tags/%E7%88%AC%E8%99%AB/" title="爬虫: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="爬虫" style="background-color: #82E0AA;">爬虫
+                            data-tagname="爬虫" style="background-color: #A3E4D7;">爬虫
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -640,6 +658,136 @@ $(function () {
                         var index_content = -1;
                         var first_occur = -1;
                         // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
+ not empty titles and contents
                         if (data_title !== '' && data_content !== '') {
                             keywords.forEach(function (keyword, i) {
                                 index_title = data_title.indexOf(keyword);
