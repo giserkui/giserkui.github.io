@@ -6,7 +6,7 @@
   <link href="https://giserkui.github.io/atom.xml" rel="self"/>
   
   <link href="https://giserkui.github.io/"/>
-  <updated>2022-06-22T08:14:27.161Z</updated>
+  <updated>2022-06-26T03:04:24.071Z</updated>
   <id>https://giserkui.github.io/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>No.5 CGAN</title>
+    <link href="https://giserkui.github.io/2022/06/18/eighblog/"/>
+    <id>https://giserkui.github.io/2022/06/18/eighblog/</id>
+    <published>2022-06-18T14:00:09.000Z</published>
+    <updated>2022-06-26T03:04:24.071Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NO-5-CGAN&quot;&gt;&lt;a href=&quot;#NO-5-CGAN&quot; class=&quot;headerlink&quot; title=&quot;NO.5 CGAN&quot;&gt;&lt;/a&gt;NO.5 CGAN&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/categories/GAN/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+    <category term="CGAN" scheme="https://giserkui.github.io/tags/CGAN/"/>
+    
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>No.4 DCGAN</title>
     <link href="https://giserkui.github.io/2022/06/11/seveblog/"/>
     <id>https://giserkui.github.io/2022/06/11/seveblog/</id>
     <published>2022-06-11T13:15:55.000Z</published>
-    <updated>2022-06-22T08:14:27.161Z</updated>
+    <updated>2022-06-26T02:49:43.229Z</updated>
     
     
       
@@ -95,9 +124,9 @@
     
     <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
     
-    <category term="FID" scheme="https://giserkui.github.io/tags/FID/"/>
-    
     <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
+    <category term="FID" scheme="https://giserkui.github.io/tags/FID/"/>
     
   </entry>
   
