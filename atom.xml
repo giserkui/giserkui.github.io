@@ -6,7 +6,7 @@
   <link href="https://giserkui.github.io/atom.xml" rel="self"/>
   
   <link href="https://giserkui.github.io/"/>
-  <updated>2022-06-26T03:04:24.071Z</updated>
+  <updated>2022-07-07T14:34:13.789Z</updated>
   <id>https://giserkui.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>No.6 WGAN+WGAN-GP</title>
+    <link href="https://giserkui.github.io/2022/06/25/nineblog/"/>
+    <id>https://giserkui.github.io/2022/06/25/nineblog/</id>
+    <published>2022-06-25T15:58:09.000Z</published>
+    <updated>2022-07-07T14:34:13.789Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;NO-6-WGAN-WGAN-GP&quot;&gt;&lt;a href=&quot;#NO-6-WGAN-WGAN-GP&quot; class=&quot;headerlink&quot; title=&quot;NO.6 WGAN+WGAN-GP&quot;&gt;&lt;/a&gt;NO.6 WGAN+WGAN-GP&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/categories/GAN/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
+    <category term="WGAN" scheme="https://giserkui.github.io/tags/WGAN/"/>
+    
+    <category term="WGAN-GP" scheme="https://giserkui.github.io/tags/WGAN-GP/"/>
+    
+  </entry>
   
   <entry>
     <title>No.5 CGAN</title>
