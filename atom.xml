@@ -6,7 +6,7 @@
   <link href="https://giserkui.github.io/atom.xml" rel="self"/>
   
   <link href="https://giserkui.github.io/"/>
-  <updated>2022-07-07T14:34:13.789Z</updated>
+  <updated>2022-07-13T09:52:12.691Z</updated>
   <id>https://giserkui.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）</title>
+    <link href="https://giserkui.github.io/2022/07/02/tenblog/"/>
+    <id>https://giserkui.github.io/2022/07/02/tenblog/</id>
+    <published>2022-07-02T13:58:09.000Z</published>
+    <updated>2022-07-13T09:52:12.691Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;pytorch模型输入（tif输入以及不同尺寸数据读入保存）&quot;&gt;&lt;a href=&quot;#pytorch模型输入（tif输入以及不同尺寸数据读入保存）&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="pytorch" scheme="https://giserkui.github.io/categories/pytorch/"/>
+    
+    
+    <category term="GAN" scheme="https://giserkui.github.io/tags/GAN/"/>
+    
+    <category term="python" scheme="https://giserkui.github.io/tags/python/"/>
+    
+    <category term="pytorch" scheme="https://giserkui.github.io/tags/pytorch/"/>
+    
+  </entry>
   
   <entry>
     <title>No.6 WGAN+WGAN-GP</title>
