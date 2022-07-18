@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="pytorch模型输入（tif输入以及不同尺寸数据读入保存）
-解决pytorch模型输入问题，主要包括两个问题，一个是16位的tiff输入问题，一个是长宽不一致时，数据如何处理，保存时如何进行图片裁剪的问题。
-
-16位tiff数据的输入之前">
+    <meta name="keywords" content="No.7 InfoGAN, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="NO.7 InfoGAN前言
+本节主要介绍InfoGAN，前面五节我们提到的GAN输入是随机噪声，生成一张与原图非常相似的图像，那我们能不能控制影像的某一个特征，来生成我们所期望的图像。答案是肯定的，但是会非常复杂，因为一张图片通过GAN我">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +20,7 @@
 
     
 
-    <title>pytorch模型输入（tifF输入以及不同尺寸数据读入/保存） | SunflowerBlog</title>
+    <title>No.7 InfoGAN | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）</h1>
+                    <h1 class="description center-align post-title">No.7 InfoGAN</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +442,8 @@
                                 <span class="chip bg-color">python</span>
                             </a>
                         
-                            <a href="/tags/pytorch/">
-                                <span class="chip bg-color">pytorch</span>
+                            <a href="/tags/InfoGAN/">
+                                <span class="chip bg-color">InfoGAN</span>
                             </a>
                         
                     </div>
@@ -456,8 +454,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/pytorch/" class="post-category">
-                                pytorch
+                            <a href="/categories/GAN/" class="post-category">
+                                GAN
                             </a>
                         
                     </div>
@@ -469,7 +467,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-02
+                    2022-07-09
                 </div>
                 
 
@@ -493,39 +491,108 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="pytorch模型输入（tif输入以及不同尺寸数据读入保存）"><a href="#pytorch模型输入（tif输入以及不同尺寸数据读入保存）" class="headerlink" title="pytorch模型输入（tif输入以及不同尺寸数据读入保存）"></a>pytorch模型输入（tif输入以及不同尺寸数据读入保存）</h1><blockquote>
-<p>解决pytorch模型输入问题，主要包括两个问题，一个是16位的tiff输入问题，一个是长宽不一致时，数据如何处理，保存时如何进行图片裁剪的问题。</p>
+                <h1 id="NO-7-InfoGAN"><a href="#NO-7-InfoGAN" class="headerlink" title="NO.7 InfoGAN"></a>NO.7 InfoGAN</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>本节主要介绍InfoGAN，前面五节我们提到的GAN输入是随机噪声，生成一张与原图非常相似的图像，那我们能不能控制影像的某一个特征，来生成我们所期望的图像。答案是肯定的，但是会非常复杂，因为一张图片通过GAN我们可以提取上百上千个特征，大部分特征是不可解释的。针对这个问题InfoGAN引入了特征解耦，控制某些特征变得清晰规律化。</p>
 </blockquote>
-<h2 id="16位tiff数据的输入"><a href="#16位tiff数据的输入" class="headerlink" title="16位tiff数据的输入"></a>16位tiff数据的输入</h2><p>之前深度学习模型 的数据集大多是JPG或者PNG格式，如果是单波段，大多也都是8位的，对于16位的tif数据输入还是第一次碰到，pytorch可以支持8位图片读取，所以这个代码实现了16位图片的读入与保存，个人感觉还是挺有用。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">img <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>img_path<span class="token punctuation">)</span>
-img_arr <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-img_arr <span class="token operator">=</span> img_arr<span class="token operator">/</span><span class="token number">1</span>
-<span class="token keyword">if</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">:</span>
-    img <span class="token operator">=</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>img_arr<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>但这个代码只能用于处理tif，如果JPG或者PNG，Loss值会很大，所以如果写这个代码需要加一个判断是否加载的数据为tif格式。</p>
-<h2 id="长宽不一致时的数据读入"><a href="#长宽不一致时的数据读入" class="headerlink" title="长宽不一致时的数据读入"></a>长宽不一致时的数据读入</h2><p>因为项目需求，需要处理的图像可能会碰到长宽不一致的现象，以下代码思路是对其进行padding操作，还有滑窗的方式，在此就没有列出。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">padding_img</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    w<span class="token punctuation">,</span>h <span class="token operator">=</span> img<span class="token punctuation">.</span>size  <span class="token comment">#获取图像的长宽进行判断</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>w<span class="token operator">==</span>h<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> w
-    <span class="token keyword">elif</span> w<span class="token operator">&gt;</span>h<span class="token punctuation">:</span>
-        img_new <span class="token operator">=</span> Image<span class="token punctuation">.</span>new<span class="token punctuation">(</span>img<span class="token punctuation">.</span>mode<span class="token punctuation">,</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment">#0表示背景色，也可以设置其他颜色</span>
-        img_new<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">(</span>w<span class="token operator">-</span>h<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#//在这用的整除算式</span>
-        <span class="token keyword">return</span> img_new
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        img_new <span class="token operator">=</span> Image<span class="token punctuation">.</span>new<span class="token punctuation">(</span>img<span class="token punctuation">.</span>mode<span class="token punctuation">,</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span>h<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token comment">#0表示背景色，也可以设置其他颜色</span>
-        img_new<span class="token punctuation">.</span>paste<span class="token punctuation">(</span>img<span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">(</span>h<span class="token operator">-</span>w<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#//在这用的整除算式</span>
-        <span class="token keyword">return</span> img_new<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="与GAN的区别"><a href="#与GAN的区别" class="headerlink" title="与GAN的区别"></a>与GAN的区别</h2><p>InfoGAN实现了特征解耦，针对minist数据集，解耦出来的特征主要有两种，一个是控制数字生成的倾斜度，一个是控制数字生成的粗细，与GAN的最大区别是输入数据包括了随机噪声、标签和隐向量，标签用于生成有序的图像，隐向量控制了某一特征有规律的变化。在InfoGAN中可解释的隐向量有两个，其他特征也未能解释出来。针对SAR影像，特征空间与minist数据集还是有区别，噪声较多，效果还没达到minist数据集精度，但是我们也尝试将角度特征进行解耦，并生成了新角度的数据。首先我们还是以GAN为基础，结合代码与对原理进行介绍，在本篇的最后我们会附上效果图。</p>
+<h3 id="隐向量C"><a href="#隐向量C" class="headerlink" title="隐向量C"></a>隐向量C</h3><p>隐向量控制着特征的输出，这是最主要的点，我们先看一下如何在代码中构建一个隐向量，并将其与噪声拼接。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">zeros <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>n_row <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+c_varied <span class="token operator">=</span> np<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span>np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span>n_row<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>newaxis<span class="token punctuation">]</span><span class="token punctuation">,</span>n_row<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+c1 <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">(</span>c_varied<span class="token punctuation">,</span>zeros<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+c2 <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">(</span>zeros<span class="token punctuation">,</span>c_varied<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sample1 <span class="token operator">=</span> generator<span class="token punctuation">(</span>static_z<span class="token punctuation">,</span>static_label<span class="token punctuation">,</span>c1<span class="token punctuation">)</span>
+sample2 <span class="token operator">=</span> generator<span class="token punctuation">(</span>static_z<span class="token punctuation">,</span>static_label<span class="token punctuation">,</span>c2<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="长宽不一致数据保存"><a href="#长宽不一致数据保存" class="headerlink" title="长宽不一致数据保存"></a>长宽不一致数据保存</h2><p>因为在前面数据输入的时候对数据进行了pandding处理，所以数据保存要对其裁剪，但这个裁剪确实是个坑，虽然只有简单几行代码，但也花了我至少半天时间，才开始我寻找了两种保存方式save_image()与img.write()，但这两种并不能改变图像的大小，所以我们要对预测结果的tensor处理，然后就尝试用resize()，crop()，clamp()，reshape()等函数处理，发现也不行，因为预测结果的tensor是含有梯度的，不能对其进行尺寸大小的改变，所以需要先将其转为numpy，然后numpy之后，resize()函数依然报错，所以直接用列表取值的方式将数据取出。取出之后采用save_image(保存又报错，是因为我们需要再把numpy转为tensor,具体代码如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">img_res <span class="token operator">=</span> img_gen<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-img_res1 <span class="token operator">=</span> img_res<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-img_fin <span class="token operator">=</span> imgres1<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">(</span>w<span class="token operator">-</span>h<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>height<span class="token operator">+</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">(</span>w<span class="token operator">-</span>h<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">:</span>width<span class="token punctuation">]</span>
-img_save <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span>img_fin<span class="token punctuation">)</span>
-save_image<span class="token punctuation">(</span>img_save<span class="token punctuation">.</span>data<span class="token punctuation">,</span><span class="token string">"save.tif"</span><span class="token punctuation">,</span>nrow<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>normalize<span class="token operator">=</span>true<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上面代码还有个坑，是用列表取数据时，前两维也需要写，含义是波段与batch_size。因为padiding我们是对图像的两侧分别填充，所以截取数据的时候下标需要注意，上面代码只列出了宽度大于高度的情况。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>写这篇博客主要觉得自己以前跑的数据集都是公开的，大多格式都一样，如果在项目中，数据会有各种问题，所以想记录一下，这个还挺有共性的一个解决方案。其实上面保存在我今天整理问题的时候还有个问题，采用列表方式取数据时，有的时候长宽与原图片一致，有的时候竟然颠倒，好吧，如果你也遇到，欢迎多多指教。好吧，就写这么多了，希望明天能解决上个问题。</p>
+<h3 id="Loss函数"><a href="#Loss函数" class="headerlink" title="Loss函数"></a>Loss函数</h3><p>因为加入了隐向量，所以Loss计算也有所改变，总体的目标函数在GAN的基础上加入了互信息变分正则化I，公式如下:</p>
+<div align="center">
+<img src="https://img1.baidu.com/it/u=3503824322,1135442809&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=664&amp;h=344
+">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图1 InfoGAN目标函数
+</div>
+</div>
 
+
+<p>在代码实现中，各个LOSS计算是分开的，首先是对生成器的优化，依然采用的是交叉熵损失函数，主要的变化是输入数据加入了隐向量C，具体代码实现如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">z <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+label_input <span class="token operator">=</span> to_categorical<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>classes<span class="token punctuation">,</span>batch_size<span class="token punctuation">)</span><span class="token punctuation">,</span>num_columns<span class="token operator">=</span>classes<span class="token punctuation">)</span> 
+code_input <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>uniform<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>code_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+gen_imgs <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">,</span>label_input<span class="token punctuation">,</span>code_input<span class="token punctuation">)</span>
+validity<span class="token punctuation">,</span>_<span class="token punctuation">,</span>_ <span class="token operator">-</span> discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">)</span>
+g_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>validity<span class="token punctuation">,</span>valid<span class="token punctuation">)</span>
+g_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+optimizer_g<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其次是对判别器的训练优化，与GAN并没有什么变化，输入到判别器中的仍然是真实图像与fake图像，并取平均计算最终判别器的loss，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">real_pred<span class="token punctuation">,</span>_<span class="token punctuation">,</span>_ <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>real_imgs<span class="token punctuation">)</span>
+d_real_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>real_pred<span class="token punctuation">,</span>valid<span class="token punctuation">)</span>
+fake_pred<span class="token punctuation">,</span>_<span class="token punctuation">,</span>_ <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+d_fake_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>fake_pred<span class="token punctuation">,</span>fake<span class="token punctuation">)</span>
+d_loss <span class="token operator">=</span> <span class="token punctuation">(</span>d_real_loss<span class="token operator">+</span>d_fake_loss<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> 
+d_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+optimizer_D<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后是互信息的Loss，原文中该部分称为Q网络，与判别器网络不同的是，在上一模块判别器网络中，虽然将真实图像与Fake图像都输入到网络中，但是只经过了网络中的卷积模块；而Q网络虽然与判别器网络模型一致，但是它会经过两层的全连接层用于预测，具体优化的代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">sample_labels <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>classes<span class="token punctuation">,</span>batch_size<span class="token punctuation">)</span>
+gt_labels <span class="token operator">=</span> Variable<span class="token punctuation">(</span>LongTensor<span class="token punctuation">(</span>sample_labels<span class="token punctuation">)</span><span class="token punctuation">,</span>requires_grad <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
+z <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+label_input <span class="token operator">=</span> to_categorical<span class="token punctuation">(</span>sample_labels<span class="token punctuation">,</span>num_columns <span class="token operator">=</span> classes<span class="token punctuation">)</span>
+code_input <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>uniform<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>code_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+	gen_imgs <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">,</span>label_input<span class="token punctuation">,</span>code_input<span class="token punctuation">)</span>
+	_<span class="token punctuation">,</span>pred_label<span class="token punctuation">,</span>pred_code <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">)</span>
+	info_loss <span class="token operator">=</span> lambda_cat<span class="token operator">*</span>categorical_loss<span class="token punctuation">(</span>pred_label<span class="token punctuation">,</span>gt_labels<span class="token punctuation">)</span>_lambda_con<span class="token operator">*</span>continuous_loss<span class="token punctuation">(</span>
+	pred_code<span class="token punctuation">,</span>code_input<span class="token punctuation">)</span>
+	info_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	optimizer_info<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>adversarial_loss与continuous_loss采用的均方损失函数，categorical采用的是交叉熵损失函数，具体实现方式之间已经学习过了，所以在此不再过多介绍。</p>
+<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>在InfoGAN中，网络结构采用的是DCGAN（前面章节我们讲过），在这一部分，我们只给了判别器和Q网络的模型结构，因为上一部分提高D与Q网络会经过判别器的不同部分，所以可以学习如何实现同一个网络中，输入到不同的模块中。具体实现代码如下:</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Discriminator</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span>Discriminator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">def</span> <span class="token function">discriminator_block</span><span class="token punctuation">(</span>in_filters<span class="token punctuation">,</span> out_filters<span class="token punctuation">,</span> bn<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token triple-quoted-string string">"""Returns layers of each discriminator block"""</span>
+            block <span class="token operator">=</span> <span class="token punctuation">[</span>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_filters<span class="token punctuation">,</span> out_filters<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Dropout2d<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+            <span class="token keyword">if</span> bn<span class="token punctuation">:</span>
+                block<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span>out_filters<span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> block
+
+        self<span class="token punctuation">.</span>conv_blocks <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
+            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span>opt<span class="token punctuation">.</span>channels<span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> bn<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+
+        <span class="token comment"># The height and width of downsampled image</span>
+        ds_size <span class="token operator">=</span> opt<span class="token punctuation">.</span>img_size <span class="token operator">//</span> <span class="token number">2</span> <span class="token operator">**</span> <span class="token number">4</span>
+
+        <span class="token comment"># Output layers</span>
+        self<span class="token punctuation">.</span>adv_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">128</span> <span class="token operator">*</span> ds_size <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>aux_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">128</span> <span class="token operator">*</span> ds_size <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>n_classes<span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Softmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>latent_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">128</span> <span class="token operator">*</span> ds_size <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>code_dim<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+   <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+       out <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_blocks<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+       out <span class="token operator">=</span> out<span class="token punctuation">.</span>view<span class="token punctuation">(</span>out<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+       validity <span class="token operator">=</span> self<span class="token punctuation">.</span>adv_layer<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+       label <span class="token operator">=</span> self<span class="token punctuation">.</span>aux_layer<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+       latent_code <span class="token operator">=</span> self<span class="token punctuation">.</span>latent_layer<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+
+       <span class="token keyword">return</span> validity<span class="token punctuation">,</span> label<span class="token punctuation">,</span> latent_code<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>数据集采用的是MSTER数据集，部分效果如图所示，每一列是控制角度特征生成的不同角度的数据，但这个还有很大的改进空间。</p>
+<div align="center">
+<img src="https://wx3.sinaimg.cn/mw2000/006b3B1mly1h3lgkxhywej3106106kjl.jpg
+">
+<br>
+<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
+图1 InfoGAN效果图
+</div>
+</div>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上是关于InfoGAN的介绍，我们从代码的角度与GAN进行了对比，总体来说，主要创新点有以下几点：<br>1、因为引入了隐变量，所以对互信息部分进行优化，因此判别器、生成器与Q网络的Loss计算方式做了改进。<br>2、判别器与Q网络的模型结构使用上有了区别，判别器网络只会经过卷积模块。<br>3、重点是InfoGAN利用了特征解耦的原理，得到了可解释的特征，实现了不同角度，不同 大小等特征的数据生成。</p>
+<h4 id="以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！"></a>以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！</h4>
                 
             </div>
             <hr/>
@@ -551,7 +618,7 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/07/02/tenblog/">https://giserkui.github.io/2022/07/02/tenblog/</a>
+                    <a href="https://giserkui.github.io/2022/07/09/eleblog/">https://giserkui.github.io/2022/07/09/eleblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -597,8 +664,8 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                                     <span class="chip bg-color">python</span>
                                 </a>
                             
-                                <a href="/tags/pytorch/">
-                                    <span class="chip bg-color">pytorch</span>
+                                <a href="/tags/InfoGAN/">
+                                    <span class="chip bg-color">InfoGAN</span>
                                 </a>
                             
                         </div>
@@ -1040,9 +1107,10 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/07/09/eleblog/">
                     <div class="card-image">
@@ -1060,9 +1128,9 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1075,6 +1143,7 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1101,13 +1170,13 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/06/25/nineblog/">
+                <a href="/2022/07/02/tenblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="No.6 WGAN+WGAN-GP">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）">
                         
-                        <span class="card-title">No.6 WGAN+WGAN-GP</span>
+                        <span class="card-title">pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1118,14 +1187,14 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-02
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/GAN/" class="post-category">
-                                    GAN
+                            <a href="/categories/pytorch/" class="post-category">
+                                    pytorch
                                 </a>
                             
                             
@@ -1143,12 +1212,8 @@ save_image<span class="token punctuation">(</span>img_save<span class="token pun
                         <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/WGAN/">
-                        <span class="chip bg-color">WGAN</span>
-                    </a>
-                    
-                    <a href="/tags/WGAN-GP/">
-                        <span class="chip bg-color">WGAN-GP</span>
+                    <a href="/tags/pytorch/">
+                        <span class="chip bg-color">pytorch</span>
                     </a>
                     
                 </div>
