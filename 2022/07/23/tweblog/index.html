@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="No.7 InfoGAN, Remote Sensing/GIS/My internship experience">
-    <meta name="description" content="NO.7 InfoGAN前言
-本节主要介绍InfoGAN，前面五节我们提到的GAN输入是随机噪声，生成一张与原图非常相似的图像，那我们能不能控制影像的某一个特征，来生成我们所期望的图像。答案是肯定的，但是会非常复杂，因为一张图片通过GAN我">
+    <meta name="keywords" content="Thanks, Remote Sensing/GIS/My internship experience">
+    <meta name="description" content="写在最后实习的最后一篇了，文采不好，就写篇流水账了
+先说说自己为啥想写既不实用又没啥技术含量的网页吧。初心就是想记录自己在这段时光中遇到的人做过的事，如果哪一天我想你们了，总比翻照片快吧，又或哪一天我患了阿尔兹海默症，这几篇文章这几张图片还">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +20,7 @@
 
     
 
-    <title>No.7 InfoGAN | SunflowerBlog</title>
+    <title>Thanks | SunflowerBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">No.7 InfoGAN</h1>
+                    <h1 class="description center-align post-title">Thanks</h1>
                 </div>
             </div>
         </div>
@@ -434,16 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/GAN/">
-                                <span class="chip bg-color">GAN</span>
-                            </a>
-                        
-                            <a href="/tags/python/">
-                                <span class="chip bg-color">python</span>
-                            </a>
-                        
-                            <a href="/tags/InfoGAN/">
-                                <span class="chip bg-color">InfoGAN</span>
+                            <a href="/tags/thanks/">
+                                <span class="chip bg-color">thanks</span>
                             </a>
                         
                     </div>
@@ -454,8 +446,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/GAN/" class="post-category">
-                                GAN
+                            <a href="/categories/thanks/" class="post-category">
+                                thanks
                             </a>
                         
                     </div>
@@ -467,7 +459,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-09
+                    2022-07-23
                 </div>
                 
 
@@ -491,108 +483,37 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="NO-7-InfoGAN"><a href="#NO-7-InfoGAN" class="headerlink" title="NO.7 InfoGAN"></a>NO.7 InfoGAN</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>本节主要介绍InfoGAN，前面五节我们提到的GAN输入是随机噪声，生成一张与原图非常相似的图像，那我们能不能控制影像的某一个特征，来生成我们所期望的图像。答案是肯定的，但是会非常复杂，因为一张图片通过GAN我们可以提取上百上千个特征，大部分特征是不可解释的。针对这个问题InfoGAN引入了特征解耦，控制某些特征变得清晰规律化。</p>
-</blockquote>
-<h2 id="与GAN的区别"><a href="#与GAN的区别" class="headerlink" title="与GAN的区别"></a>与GAN的区别</h2><p>InfoGAN实现了特征解耦，针对minist数据集，解耦出来的特征主要有两种，一个是控制数字生成的倾斜度，一个是控制数字生成的粗细，与GAN的最大区别是输入数据包括了随机噪声、标签和隐向量，标签用于生成有序的图像，隐向量控制了某一特征有规律的变化。在InfoGAN中可解释的隐向量有两个，其他特征也未能解释出来。针对SAR影像，特征空间与minist数据集还是有区别，噪声较多，效果还没达到minist数据集精度，但是我们也尝试将角度特征进行解耦，并生成了新角度的数据。首先我们还是以GAN为基础，结合代码与对原理进行介绍，在本篇的最后我们会附上效果图。</p>
-<h3 id="隐向量C"><a href="#隐向量C" class="headerlink" title="隐向量C"></a>隐向量C</h3><p>隐向量控制着特征的输出，这是最主要的点，我们先看一下如何在代码中构建一个隐向量，并将其与噪声拼接。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">zeros <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>n_row <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-c_varied <span class="token operator">=</span> np<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span>np<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span>n_row<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span>np<span class="token punctuation">.</span>newaxis<span class="token punctuation">]</span><span class="token punctuation">,</span>n_row<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
-c1 <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">(</span>c_varied<span class="token punctuation">,</span>zeros<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-c2 <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">(</span>zeros<span class="token punctuation">,</span>c_varied<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-sample1 <span class="token operator">=</span> generator<span class="token punctuation">(</span>static_z<span class="token punctuation">,</span>static_label<span class="token punctuation">,</span>c1<span class="token punctuation">)</span>
-sample2 <span class="token operator">=</span> generator<span class="token punctuation">(</span>static_z<span class="token punctuation">,</span>static_label<span class="token punctuation">,</span>c2<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>实习的最后一篇了，文采不好，就写篇流水账了</p>
+<p>先说说自己为啥想写既不实用又没啥技术含量的网页吧。初心就是想记录自己在这段时光中遇到的人做过的事，如果哪一天我想你们了，总比翻照片快吧，又或哪一天我患了阿尔兹海默症，这几篇文章这几张图片还能唤醒自己这一段美好的记忆，我就把这段时间做过的东西，拍过的照片，想说的话保存在了这里。</p>
+<p>昨天部门团建，让我回想到了第一天来公司参加的团建，那时可能还不到十人，昨天已经二十多人了，时间过的快，人换的也勤，这也是人生常态，能一直在你身边的又有几个。四个多月的实习经历很充实，认识的每一个人也让我倍加珍惜，虽然对每个人我没有真正了解，但让我能回忆到的大家还都有特色，充满着真诚的爱意。对于我个人而言，我尽量回忆我认识大家的顺序，或许有误。。。：</p>
+<p>静姐，是个新晋宝妈，做过公益讼诉的一些工作，工作努力细致，之前觉得很无聊的工作，让我认识到了每一项工作的重要性与技巧性，也愿您孩子健康快乐长大</p>
+<p>艳姐，我愿称之为公司最漂亮的人，相比之下，打扮更时尚，说话也很温柔，有幸一起吃饭遛弯，也让我知道了有钱很难买到的是气质</p>
+<p>赵博士，是个狠人，我是觉得是个很严肃的人，或许是因为自己担心工作干不好会被说吧，但并没有，反而相处很开心，给我感觉他一直在工位上忙个不停，blog记录的大部分都是他教我的，当然，还有一些，可惜我没时间整理了，但确实教我了很多</p>
+<p>蒋总，是个女强者，乐观饱含热情，一起吃饭，一起熬夜加班的日子，让我认识到了在北京生活该努力的样子，还常常和我女朋友谈起她的努力和幸福家庭，确实影响了我很多</p>
+<p>刘总，是成功人士，虽说聊的不多，是一个讲诚信的领导，有一次车上随口说了一句有机会聊聊您的经历，没想到他真的找了个时间，给我讲了很多</p>
+<p>岩哥，是个成熟的男孩子，有幸成为岩哥同桌，没想到是同龄，看起来我显得更不成熟，祝岩哥赶快恢复，篮球场需要你</p>
+<p>杨哥，是个实在人，年龄虽大一些，但经验多，在长春安排住宿请吃饭，哈哈，以后一定再找机会请回来</p>
+<p>张总，是个接梗王，和张总一起，永远缺不了梗，也就缺不了欢声笑语</p>
+<p>金豆，是个值得交的朋友，真实又认真，做事迅速，每次打招呼都会笑，和我一样，也有些不自信，或许是我们的这个年龄段的通病，空有一腔热血，但总觉得自己能力还不够</p>
+<p>通哥，是个金主家的孩子，无忧无虑的生活，待人真诚，虽不怎么和人交流，但每次开完会都默默收拾椅子，看得出来他还是自己暗自努力，通过自己的方式融入集体</p>
+<p>因为有聚会，我第一天认识了十几个人</p>
+<p>朱哥，是个男孩子，自信又擅于辩论，和蒋总一样爱笑，爱干净审美不错，好吧，都是我永远无法做到的，希望他未来依旧，努力学习，让自己内心更加强大</p>
+<p>汪总，是个面带善意的总裁，一次汪总参加了部门聚会，有幸敬过酒，每次公司碰见，也是很平易近人，没有总裁架子</p>
+<p>强总，是个笑面虎领导，有幸一起参加过一次公司培训，强总还总是回答问题，提出疑惑，是个很爱学又有技术的领导，看得出来对这行的热爱</p>
+<p>文颖，是个文静的女孩子，但是我大哥，心有灵犀，有次蒋总聚会睡在沙发，我把防晒衣递给了文颖，没有说话没有眼神交流，她就拿给蒋总盖了，不愧是兄弟，懂</p>
+<p>黄哥，是个果断的人，有幸听黄哥说，之前是在事业单位，因为兴趣以及不甘于稳定，决心辞掉来北京闯荡，愿我有朝一日做事有黄哥这种勇气</p>
+<p>峰哥，是个高富帅，听闻峰哥给老爸买了辆车，有联想到峰哥的经历，是个孝顺的孩子，而对于我来说，又是多么羡慕峰哥有这种机会呢，如今的我仍然对自己充满悔恨</p>
+<p>斌哥，是个勤奋的人，没记错入职第一天就在加班，后面和斌哥一起干活，看得出来对待每一件事的认真，程序改了又改，非要达到最准确的效果</p>
+<p>旭哥，是个强者，能力毋庸置疑，同龄的我自愧不如，一次问了旭哥问题，但旭哥第二天又微信给我解释，如此真诚帮助我，值得交</p>
+<p>韩总，是个局气人，说话办事，谈吐举止，语言中带着和蔼</p>
+<p>龙哥，是个暖男，有幸去过长春，虽时间不长，龙哥还开车带我去医院做核酸，听闻龙哥母亲当时还在医院，也祝阿姨早日康复</p>
+<p>丹丹姐，是个王者，我们三个唯一上过王者的，是有毅力的女孩子，也期待以后一起带我飞</p>
+<p>函哥，是校友，不仅是校友，连函哥的同学都是我专业课老师，有幸听过函哥一次培训，看到他沉浸在自己的系统中，或许这才是兴趣</p>
+<p>说到校友，还有李总，是我师姐，同处一个办公区，她安排人员能力，对待工作的逻辑思维，有目共睹</p>
+<p>还有吴哥，打过篮球的健存总，谢总，nlp的强哥，龙哥，离职的隋博士，晓坤，，，</p>
+<p>好吧，当然还有很多很多，如果继续写可能要写到深夜了，写文档有个坏毛病，不愿意去检查，要是写错啥了，也别见怪了。</p>
+<p>记录自己认识的每一个人，很开心认识到你们，一声感谢，一声祝好，一声有缘再会</p>
 
-<h3 id="Loss函数"><a href="#Loss函数" class="headerlink" title="Loss函数"></a>Loss函数</h3><p>因为加入了隐向量，所以Loss计算也有所改变，总体的目标函数在GAN的基础上加入了互信息变分正则化I，公式如下:</p>
-<div align="center">
-<img src="https://img1.baidu.com/it/u=3503824322,1135442809&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=664&amp;h=344
-">
-<br>
-<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
-图1 InfoGAN目标函数
-</div>
-</div>
-
-
-<p>在代码实现中，各个LOSS计算是分开的，首先是对生成器的优化，依然采用的是交叉熵损失函数，主要的变化是输入数据加入了隐向量C，具体代码实现如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">z <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
-label_input <span class="token operator">=</span> to_categorical<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>classes<span class="token punctuation">,</span>batch_size<span class="token punctuation">)</span><span class="token punctuation">,</span>num_columns<span class="token operator">=</span>classes<span class="token punctuation">)</span> 
-code_input <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>uniform<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>code_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
-gen_imgs <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">,</span>label_input<span class="token punctuation">,</span>code_input<span class="token punctuation">)</span>
-validity<span class="token punctuation">,</span>_<span class="token punctuation">,</span>_ <span class="token operator">-</span> discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">)</span>
-g_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>validity<span class="token punctuation">,</span>valid<span class="token punctuation">)</span>
-g_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-optimizer_g<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其次是对判别器的训练优化，与GAN并没有什么变化，输入到判别器中的仍然是真实图像与fake图像，并取平均计算最终判别器的loss，代码如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">real_pred<span class="token punctuation">,</span>_<span class="token punctuation">,</span>_ <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>real_imgs<span class="token punctuation">)</span>
-d_real_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>real_pred<span class="token punctuation">,</span>valid<span class="token punctuation">)</span>
-fake_pred<span class="token punctuation">,</span>_<span class="token punctuation">,</span>_ <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-d_fake_loss <span class="token operator">=</span> adversarial_loss<span class="token punctuation">(</span>fake_pred<span class="token punctuation">,</span>fake<span class="token punctuation">)</span>
-d_loss <span class="token operator">=</span> <span class="token punctuation">(</span>d_real_loss<span class="token operator">+</span>d_fake_loss<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span> 
-d_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-optimizer_D<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>最后是互信息的Loss，原文中该部分称为Q网络，与判别器网络不同的是，在上一模块判别器网络中，虽然将真实图像与Fake图像都输入到网络中，但是只经过了网络中的卷积模块；而Q网络虽然与判别器网络模型一致，但是它会经过两层的全连接层用于预测，具体优化的代码如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">sample_labels <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>classes<span class="token punctuation">,</span>batch_size<span class="token punctuation">)</span>
-gt_labels <span class="token operator">=</span> Variable<span class="token punctuation">(</span>LongTensor<span class="token punctuation">(</span>sample_labels<span class="token punctuation">)</span><span class="token punctuation">,</span>requires_grad <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">)</span>
-z <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>normal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>latent_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-label_input <span class="token operator">=</span> to_categorical<span class="token punctuation">(</span>sample_labels<span class="token punctuation">,</span>num_columns <span class="token operator">=</span> classes<span class="token punctuation">)</span>
-code_input <span class="token operator">=</span> Variable<span class="token punctuation">(</span>FloatTensor<span class="token punctuation">(</span>np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>uniform<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token punctuation">(</span>batch_size<span class="token punctuation">,</span>opt<span class="token punctuation">.</span>code_dim<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-	gen_imgs <span class="token operator">=</span> generator<span class="token punctuation">(</span>z<span class="token punctuation">,</span>label_input<span class="token punctuation">,</span>code_input<span class="token punctuation">)</span>
-	_<span class="token punctuation">,</span>pred_label<span class="token punctuation">,</span>pred_code <span class="token operator">=</span> discriminator<span class="token punctuation">(</span>gen_imgs<span class="token punctuation">)</span>
-	info_loss <span class="token operator">=</span> lambda_cat<span class="token operator">*</span>categorical_loss<span class="token punctuation">(</span>pred_label<span class="token punctuation">,</span>gt_labels<span class="token punctuation">)</span>_lambda_con<span class="token operator">*</span>continuous_loss<span class="token punctuation">(</span>
-	pred_code<span class="token punctuation">,</span>code_input<span class="token punctuation">)</span>
-	info_loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-	optimizer_info<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>adversarial_loss与continuous_loss采用的均方损失函数，categorical采用的是交叉熵损失函数，具体实现方式之间已经学习过了，所以在此不再过多介绍。</p>
-<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>在InfoGAN中，网络结构采用的是DCGAN（前面章节我们讲过），在这一部分，我们只给了判别器和Q网络的模型结构，因为上一部分提高D与Q网络会经过判别器的不同部分，所以可以学习如何实现同一个网络中，输入到不同的模块中。具体实现代码如下:</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Discriminator</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token builtin">super</span><span class="token punctuation">(</span>Discriminator<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-        <span class="token keyword">def</span> <span class="token function">discriminator_block</span><span class="token punctuation">(</span>in_filters<span class="token punctuation">,</span> out_filters<span class="token punctuation">,</span> bn<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token triple-quoted-string string">"""Returns layers of each discriminator block"""</span>
-            block <span class="token operator">=</span> <span class="token punctuation">[</span>nn<span class="token punctuation">.</span>Conv2d<span class="token punctuation">(</span>in_filters<span class="token punctuation">,</span> out_filters<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>LeakyReLU<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Dropout2d<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-            <span class="token keyword">if</span> bn<span class="token punctuation">:</span>
-                block<span class="token punctuation">.</span>append<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>BatchNorm2d<span class="token punctuation">(</span>out_filters<span class="token punctuation">,</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            <span class="token keyword">return</span> block
-
-        self<span class="token punctuation">.</span>conv_blocks <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>
-            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span>opt<span class="token punctuation">.</span>channels<span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">,</span> bn<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token operator">*</span>discriminator_block<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token punctuation">)</span>
-
-        <span class="token comment"># The height and width of downsampled image</span>
-        ds_size <span class="token operator">=</span> opt<span class="token punctuation">.</span>img_size <span class="token operator">//</span> <span class="token number">2</span> <span class="token operator">**</span> <span class="token number">4</span>
-
-        <span class="token comment"># Output layers</span>
-        self<span class="token punctuation">.</span>adv_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">128</span> <span class="token operator">*</span> ds_size <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>aux_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">128</span> <span class="token operator">*</span> ds_size <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>n_classes<span class="token punctuation">)</span><span class="token punctuation">,</span> nn<span class="token punctuation">.</span>Softmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>latent_layer <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">128</span> <span class="token operator">*</span> ds_size <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">,</span> opt<span class="token punctuation">.</span>code_dim<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-   <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
-       out <span class="token operator">=</span> self<span class="token punctuation">.</span>conv_blocks<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-       out <span class="token operator">=</span> out<span class="token punctuation">.</span>view<span class="token punctuation">(</span>out<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
-       validity <span class="token operator">=</span> self<span class="token punctuation">.</span>adv_layer<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
-       label <span class="token operator">=</span> self<span class="token punctuation">.</span>aux_layer<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
-       latent_code <span class="token operator">=</span> self<span class="token punctuation">.</span>latent_layer<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
-
-       <span class="token keyword">return</span> validity<span class="token punctuation">,</span> label<span class="token punctuation">,</span> latent_code<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>数据集采用的是MSTER数据集，部分效果如图所示，每一列是控制角度特征生成的不同角度的数据，但这个还有很大的改进空间。</p>
-<div align="center">
-<img src="https://wx3.sinaimg.cn/mw2000/006b3B1mly1h3lgkxhywej3106106kjl.jpg
-">
-<br>
-<div style="color:orange;boder-bottom:1px solid #d9d9d9;display: inline-block;color:#999;padding:2px;">
-图1 InfoGAN效果图
-</div>
-</div>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上是关于InfoGAN的介绍，我们从代码的角度与GAN进行了对比，总体来说，主要创新点有以下几点：<br>1、因为引入了隐变量，所以对互信息部分进行优化，因此判别器、生成器与Q网络的Loss计算方式做了改进。<br>2、判别器与Q网络的模型结构使用上有了区别，判别器网络只会经过卷积模块。<br>3、重点是InfoGAN利用了特征解耦的原理，得到了可解释的特征，实现了不同角度，不同 大小等特征的数据生成。</p>
-<h4 id="以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！"><a href="#以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！" class="headerlink" title="以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！"></a>以上是GAN的第7节关于InfoGAN的讨论，仅仅是个人见解，如有错误，欢迎指出，谢谢您！！！</h4>
                 
             </div>
             <hr/>
@@ -618,7 +539,7 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://giserkui.github.io/2022/07/09/eleblog/">https://giserkui.github.io/2022/07/09/eleblog/</a>
+                    <a href="https://giserkui.github.io/2022/07/23/tweblog/">https://giserkui.github.io/2022/07/23/tweblog/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -656,16 +577,8 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/GAN/">
-                                    <span class="chip bg-color">GAN</span>
-                                </a>
-                            
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
-                                </a>
-                            
-                                <a href="/tags/InfoGAN/">
-                                    <span class="chip bg-color">InfoGAN</span>
+                                <a href="/tags/thanks/">
+                                    <span class="chip bg-color">thanks</span>
                                 </a>
                             
                         </div>
@@ -1107,9 +1020,10 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/07/23/tweblog/">
                     <div class="card-image">
@@ -1127,9 +1041,9 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1142,6 +1056,7 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1160,13 +1075,13 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/02/tenblog/">
+                <a href="/2022/07/09/eleblog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="No.7 InfoGAN">
                         
-                        <span class="card-title">pytorch模型输入（tifF输入以及不同尺寸数据读入/保存）</span>
+                        <span class="card-title">No.7 InfoGAN</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1177,14 +1092,14 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/pytorch/" class="post-category">
-                                    pytorch
+                            <a href="/categories/GAN/" class="post-category">
+                                    GAN
                                 </a>
                             
                             
@@ -1202,8 +1117,8 @@ code_input <span class="token operator">=</span> Variable<span class="token punc
                         <span class="chip bg-color">python</span>
                     </a>
                     
-                    <a href="/tags/pytorch/">
-                        <span class="chip bg-color">pytorch</span>
+                    <a href="/tags/InfoGAN/">
+                        <span class="chip bg-color">InfoGAN</span>
                     </a>
                     
                 </div>
